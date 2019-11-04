@@ -12,6 +12,8 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(cors());
 
+app.use(require('./src/routes'));
+
 app.listen(PORT, () => {
     console.log('Server start in port 3000');
 })

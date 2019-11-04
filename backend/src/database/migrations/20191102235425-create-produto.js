@@ -17,6 +17,15 @@ module.exports = {
       valor: {
         type: Sequelize.DECIMAL(18, 2)
       },
+      idvendedor: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'Vendedores',
+          key: 'idvendedor'
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

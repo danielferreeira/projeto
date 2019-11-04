@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { ProductConsumer } from "../context";
+import img from './product-5.png'
 export default class Product extends Component {
   render() {
-    const { id, title, img, price, inCart } = this.props.product;
+    const { idproduto, nome, descricao, valor, inCart } = this.props.product;
     return (
       <ProductWrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3">
         <div className="card">
@@ -13,7 +14,7 @@ export default class Product extends Component {
               return (
                 <div
                   className="img-container p-5"
-                  onClick={() => value.handleDetail(id)}
+                  onClick={() => value.handleDetail(idproduto)}
                 >
                   <Link to="/details">
                     <img src={img} alt="" className="card-img-top" />
@@ -22,8 +23,8 @@ export default class Product extends Component {
                     className="cart-btn"
                     disabled={inCart ? true : false}
                     onClick={() => {
-                      value.addToCart(id);
-                      value.openModal(id);
+                      value.addToCart(idproduto);
+                      value.openModal(idproduto);
                     }}
                   >
                     {inCart ? (
@@ -39,10 +40,10 @@ export default class Product extends Component {
             }}
           </ProductConsumer>
           <div className="card-footer d-flex justify-content-between">
-            <p className="align-self-center mb-0">{title}</p>
+            <p className="align-self-center mb-0">{nome}</p>
             <h5 className="text-blue font-italic mb-0">
               <span className="mr-1">$</span>
-              {price}
+              {valor}
             </h5>
           </div>
         </div>

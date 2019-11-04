@@ -2,9 +2,16 @@
 module.exports = (sequelize, DataTypes) => {
   const Produto = sequelize.define('Produtos', {
     idproduto: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
+    },
+    idvendedor: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Vendedores',
+        key: 'idvendedor'
+      }
     },
     nome: DataTypes.STRING,
     descricao: DataTypes.STRING,
@@ -13,15 +20,15 @@ module.exports = (sequelize, DataTypes) => {
   Produto.associate = function(models) {
     // associations can be defined here
 
-    Produto.belongsToMany(models.Pedido, {
-      through: 'PedidoProduto',
-      as: 'pedidos',
-      foreignKey: 'idproduto'
-    });
+    // Produto.belongsToMany(models.Pedido, {
+    //   through: models.PedidoProduto,
+    //   foreignKey: 'idproduto'
+    // });
 
     Produto.belongsTo(models.Vendedor, {
       foreignKey: 'idvendedor'
     });
+
     
   };
   return Produto;

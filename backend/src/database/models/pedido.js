@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Pedido = sequelize.define('Pedido', {
     idpedido: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
@@ -23,11 +23,10 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'idpessoa'
     });
 
-    Pedido.belongsToMany(models.Produto, {
-      through: 'PedidoProduto',
-      as: 'produtos',
-      foreignKey: 'idpedido'
-    });
+    // Pedido.belongsToMany(models.Produto, {
+    //   through: 'PedidoProdutos',
+    //   foreignKey: 'idpedido'
+    // });
   };
   return Pedido;
 };

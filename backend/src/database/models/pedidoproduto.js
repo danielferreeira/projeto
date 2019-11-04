@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const PedidoProduto = sequelize.define('PedidoProduto', {
     idpedidoproduto: {
-      type: Sequelize.INTEGER,
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },

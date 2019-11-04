@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { storeProducts, detailProduct } from "./data";
+import axios from 'axios';
 const ProductContext = React.createContext();
 
 class ProductProvider extends Component {
@@ -13,16 +14,20 @@ class ProductProvider extends Component {
     cartTax: 0,
     cartTotal: 0
   };
-  componentDidMount() {
-    this.setProducts();
+  async componentDidMount() {
+    await this.setProducts();
   }
 
-  setProducts = () => {
+  setProducts = async () => {
     let products = [];
-    storeProducts.forEach(item => {
+
+    const produtos = await axios.get('http://localhost:3000/produtos');
+
+    produtos && produtos.data.forEach(item => {
       const singleItem = { ...item };
       products = [...products, singleItem];
     });
+
     this.setState(() => {
       return { products };
     }, this.checkCartItems);
