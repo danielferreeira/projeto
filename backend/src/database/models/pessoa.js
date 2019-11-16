@@ -7,7 +7,16 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
     },
     nome: DataTypes.STRING,
-    cpf: DataTypes.STRING
+    cpf: DataTypes.STRING,
+    email: {
+      type: DataTypes.STRING,
+      required: true,
+    },
+    senha: {
+      type: DataTypes.STRING,
+      required: true,
+      select: false
+    }
   }, {});
   Pessoa.associate = function(models) {
     // associations can be defined here
