@@ -29,7 +29,7 @@ export default class Product extends Component {
                   >
                     {inCart ? (
                       <p className="text-capitalize mb-0" disabled>
-                        in cart
+                        No carrinho
                       </p>
                     ) : (
                       <i className="fas fa-cart-plus" />
@@ -42,7 +42,7 @@ export default class Product extends Component {
           <div className="card-footer d-flex justify-content-between">
             <p className="align-self-center mb-0">{nome}</p>
             <h5 className="text-blue font-italic mb-0">
-              <span className="mr-1">$</span>
+              <span className="mr-1">R$</span>
               {valor}
             </h5>
           </div>

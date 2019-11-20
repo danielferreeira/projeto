@@ -26,20 +26,20 @@ export default class CartTotals extends Component {
                       clearCart();
                     }}
                   >
-                    clear cart
+                    Limpar carrinho
                   </button>
                 </Link>
                 <h5>
-                  <span className="text-title"> subtotal :</span>{" "}
-                  <strong>$ {cartSubTotal} </strong>
+                  <span className="text-title"> Subtotal :</span>{" "}
+                  <strong>R$ {cartSubTotal} </strong>
                 </h5>
                 <h5>
-                  <span className="text-title"> tax :</span>{" "}
-                  <strong>$ {cartTax} </strong>
+                  <span className="text-title"> Taxas :</span>{" "}
+                  <strong>R$ {cartTax} </strong>
                 </h5>
                 <h5>
-                  <span className="text-title"> total :</span>{" "}
-                  <strong>$ {cartTotal} </strong>
+                  <span className="text-title"> Total :</span>{" "}
+                  <strong>R$ {cartTotal} </strong>
                 </h5>
                 <PayPalButton
                   total={cartTotal}

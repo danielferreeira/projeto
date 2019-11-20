@@ -21,17 +21,17 @@ export default class Modal extends Component {
                       className="col-8 mx-auto col-md-6 col-lg-4 p-5 text-center text-capitalize"
                       id="modal"
                     >
-                      <h5>item added to cart</h5>
+                      <h5>Item adicionado ao carrinho</h5>
                       <img src={img} className="img-fluid" alt="" />
                       <h5>{title}</h5>
-                      <h5 className="text-muted">price : ${price}</h5>
+                      <h5 className="text-muted">Preço : R${price}</h5>
                       <Link to="/">
                         <ButtonContainer
                           onClick={() => {
                             closeModal();
                           }}
                         >
-                          Continue Shopping
+                          Continuar comprando
                         </ButtonContainer>
                       </Link>
                       <Link to="/cart">
@@ -41,7 +41,7 @@ export default class Modal extends Component {
                             closeModal();
                           }}
                         >
-                          Go To Cart
+                          Ir para o carrinho
                         </ButtonContainer>
                       </Link>
                     </div>
