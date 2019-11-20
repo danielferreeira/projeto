@@ -1,0 +1,10 @@
+
+.paper {
+    margin-left: auto;
+    border: solid 1px lightgray;
+    margin-right: auto;
+    margin-top: 15px;
+    width: 600px;
+    height: 550px;
+    padding: 24px;
+}
