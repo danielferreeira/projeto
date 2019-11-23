@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./Login.css";
 import {Dialog, DialogContent, TextField, Button, Paper} from '@material-ui/core';
-import _ from 'lodash';
 
 export default class Login extends Component {
 

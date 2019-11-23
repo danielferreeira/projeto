@@ -1,7 +1,0 @@
-[
-    {"idproduto" : 1, "nome" : "cuia", "descricao" : "teste de cuia", "valor" : "200,00", "inCart" : true, "imgURL" : "./img/product-1.png"},
-    {"idproduto" : 2, "nome" : "chinelo", "descricao" : "teste de cuia", "valor" : "200,00", "inCart" : false, "imgURL" : "./img/product-2.png"},
-    {"idproduto" : 3, "nome" : "tapete", "descricao" : "teste de cuia", "valor" : "200,00", "inCart" : true, "imgURL" : "./img/product-3.png"},
-    {"idproduto" : 4, "nome" : "cortina", "descricao" : "teste de cuia", "valor" : "200,00", "inCart" : false, "imgURL" : "./img/product-4.png"},
-    {"idproduto" : 5, "nome" : "trilho de mesa", "descricao" : "teste de cuia", "valor" : "200,00", "inCart" : true, "imgURL" : "./img/product-5.png"}
-]

@@ -1,69 +1,69 @@
 import React, { Component } from "react";
-import { storeProducts, detailProduct } from "./data";
+import { storeProdutos, detailProduto } from "./data";
 import axios from 'axios';
-const ProductContext = React.createContext();
+const ProdutoContext = React.createContext();
 
-class ProductProvider extends Component {
+class ProdutoProvider extends Component {
   state = {
-    products: [],
-    detailProduct: detailProduct,
+    produtos: [],
+    detailProduto: detailProduto,
     cart: [],
     modalOpen: false,
-    modalProduct: detailProduct,
+    modalProduto: detailProduto,
     cartSubTotal: 0,
     cartTax: 0,
     cartTotal: 0
   };
   async componentDidMount() {
-    await this.setProducts();
+    await this.setProdutos();
   }
 
-  setProducts = async () => {
-    let products = [];
+  setProdutos = async () => {
+    let produtos = [];
 
-    const produtos = await axios.get('http://localhost:3000/produtos');
+    const produtosGet = await axios.get('http://localhost:3000/produtos');
 
     produtos && produtos.data.forEach(item => {
       const singleItem = { ...item };
-      products = [...products, singleItem];
+      produtos = [...produtos, singleItem];
     });
 
     this.setState(() => {
-      return { products };
+      return { produtos };
     }, this.checkCartItems);
   };
 
   getItem = id => {
-    const product = this.state.products.find(item => item.id === id);
-    return product;
+    const produto = this.state.produtos.find(item => item.id === id);
+    return produto;
   };
   handleDetail = id => {
-    const product = this.getItem(id);
+    const produto = this.getItem(id);
     this.setState(() => {
-      return { detailProduct: product };
+      return { detailProduto: produto };
     });
   };
   addToCart = id => {
-    let tempProducts = [...this.state.products];
-    const index = tempProducts.indexOf(this.getItem(id));
-    const product = tempProducts[index];
-    product.inCart = true;
-    product.count = 1;
-    const price = product.price;
-    product.total = price;
+    let tempProdutos = [...this.state.produtos];
+    const index = tempProdutos.indexOf(this.getItem(id));
+    const produto = tempProdutos[index];
+    produto.inCart = true;
+    produto.count = 1;
+    const price = produto.price;
+    produto.total = price;
 
     this.setState(() => {
       return {
-        products: [...tempProducts],
-        cart: [...this.state.cart, product],
-        detailProduct: { ...product }
+        produtos: [...tempProdutos],
+        cart: [...this.state.cart, produto],
+        detailProduto: { ...produto }
       };
     }, this.addTotals);
   };
   openModal = id => {
-    const product = this.getItem(id);
+    const produto = this.getItem(id);
     this.setState(() => {
-      return { modalProduct: product, modalOpen: true };
+      return { modalProduto: produto, modalOpen: true };
     });
   };
   closeModal = () => {
@@ -73,13 +73,13 @@ class ProductProvider extends Component {
   };
   increment = id => {
     let tempCart = [...this.state.cart];
-    const selectedProduct = tempCart.find(item => {
+    const selectedProduto = tempCart.find(item => {
       return item.id === id;
     });
-    const index = tempCart.indexOf(selectedProduct);
-    const product = tempCart[index];
-    product.count = product.count + 1;
-    product.total = product.count * product.price;
+    const index = tempCart.indexOf(selectedProduto);
+    const produto = tempCart[index];
+    produto.count = produto.count + 1;
+    produto.total = produto.count * produto.price;
     this.setState(() => {
       return {
         cart: [...tempCart]
@@ -88,16 +88,16 @@ class ProductProvider extends Component {
   };
   decrement = id => {
     let tempCart = [...this.state.cart];
-    const selectedProduct = tempCart.find(item => {
+    const selectedProduto = tempCart.find(item => {
       return item.id === id;
     });
-    const index = tempCart.indexOf(selectedProduct);
-    const product = tempCart[index];
-    product.count = product.count - 1;
-    if (product.count === 0) {
+    const index = tempCart.indexOf(selectedProduto);
+    const produto = tempCart[index];
+    produto.count = produto.count - 1;
+    if (produto.count === 0) {
       this.removeItem(id);
     } else {
-      product.total = product.count * product.price;
+      produto.total = produto.count * produto.price;
       this.setState(() => {
         return { cart: [...tempCart] };
       }, this.addTotals);
@@ -137,14 +137,14 @@ class ProductProvider extends Component {
     );
   };
   removeItem = id => {
-    let tempProducts = [...this.state.products];
+    let tempProdutos = [...this.state.produtos];
     let tempCart = [...this.state.cart];
 
-    const index = tempProducts.indexOf(this.getItem(id));
-    let removedProduct = tempProducts[index];
-    removedProduct.inCart = false;
-    removedProduct.count = 0;
-    removedProduct.total = 0;
+    const index = tempProdutos.indexOf(this.getItem(id));
+    let removedProduto = tempProdutos[index];
+    removedProduto.inCart = false;
+    removedProduto.count = 0;
+    removedProduto.total = 0;
 
     tempCart = tempCart.filter(item => {
       return item.id !== id;
@@ -153,7 +153,7 @@ class ProductProvider extends Component {
     this.setState(() => {
       return {
         cart: [...tempCart],
-        products: [...tempProducts]
+        produtos: [...tempProdutos]
       };
     }, this.addTotals);
   };
@@ -163,14 +163,14 @@ class ProductProvider extends Component {
         return { cart: [] };
       },
       () => {
-        this.setProducts();
+        this.setProdutos();
         this.addTotals();
       }
     );
   };
   render() {
     return (
-      <ProductContext.Provider
+      <ProdutoContext.Provider
         value={{
           ...this.state,
           handleDetail: this.handleDetail,
@@ -184,11 +184,11 @@ class ProductProvider extends Component {
         }}
       >
         {this.props.children}
-      </ProductContext.Provider>
+      </ProdutoContext.Provider>
     );
   }
 }
 
-const ProductConsumer = ProductContext.Consumer;
+const ProdutoConsumer = ProdutoContext.Consumer;
 
-export { ProductProvider, ProductConsumer };
+export { ProdutoProvider, ProdutoConsumer };

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./HomeVendedor.css";
 import NovoProduto from './NovoProduto';
 import {Paper, MenuItem, MenuList, Typography, ListItemIcon } from '@material-ui/core';
-import _ from 'lodash';
 import UploadIcon from '@material-ui/icons/CloudUpload';
 import EditIcon from '@material-ui/icons/Edit';
 

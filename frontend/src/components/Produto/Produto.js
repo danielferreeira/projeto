@@ -1,33 +1,48 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { ProductConsumer } from "../context";
+import { ProdutoConsumer } from "../../context";
+import ProdutoDetails from "./ProdutoDetails";
 
-export default class Product extends Component {
+export default class Produto extends Component {
+
+  state = {
+    produtoOpen : null,
+  }
+
+  handleDetail = (_Value) => {
+    this.setState({"produtoOpen" : _Value});
+  }
+
   render() {
-    const { idproduto, nome, descricao, valor, inCart, imgURL} = this.props.product;
+    const {produto, vendedor} = this.props;
+    const {produtoOpen} = this.state;
     return (
-      <ProductWrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3">
+      <ProdutoWrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3">
+        <ProdutoDetails
+          open={produtoOpen !== null}
+          produto={produtoOpen}
+          vendedor={vendedor}
+          handleDetail={this.handleDetail}
+        />
         <div className="card">
-          <ProductConsumer>
+          <ProdutoConsumer>
             {value => {
               return (
                 <div
                   className="img-container p-5"
-                  onClick={() => value.handleDetail(idproduto)}
+                  onClick={() => this.handleDetail(produto)}
                 >
-                  <Link to="/details">
-                    <img src={imgURL} alt="" className="card-img-top" />
-                  </Link>
+                  <img src={produto.imgURL} alt="" className="card-img-top" />
                   <button
                     className="cart-btn"
-                    disabled={inCart ? true : false}
+                    disabled={produto.inCart ? true : false}
                     onClick={() => {
-                      value.addToCart(idproduto);
-                      value.openModal(idproduto);
+                      value.addToCart(produto.idproduto);
+                      value.openModal(produto.idproduto);
                     }}
                   >
-                    {inCart ? (
+                    {produto.inCart ? (
                       <p className="text-capitalize mb-0" disabled>
                         No carrinho
                       </p>
@@ -38,21 +53,21 @@ export default class Product extends Component {
                 </div>
               );
             }}
-          </ProductConsumer>
+          </ProdutoConsumer>
           <div className="card-footer d-flex justify-content-between">
-            <p className="align-self-center mb-0">{nome}</p>
+            <p className="align-self-center mb-0">{produto.nome}</p>
             <h5 className="text-blue font-italic mb-0">
               <span className="mr-1">R$</span>
-              {valor}
+              {produto.valor}
             </h5>
           </div>
         </div>
-      </ProductWrapper>
+      </ProdutoWrapper>
     );
   }
 }
 
-const ProductWrapper = styled.div`
+const ProdutoWrapper = styled.div`
   .card {
     border-color: transparent;
     transition: all 1s linear;

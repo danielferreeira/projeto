@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./Register.css";
 import {Grid, Switch, TextField, Button, Paper, Typography} from '@material-ui/core';
-import _ from 'lodash';
 import axios from 'axios';
 
 export default class Register extends Component {
