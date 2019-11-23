@@ -11,7 +11,7 @@ module.exports = {
       nome: {
         type: Sequelize.STRING
       },
-      cpf: {
+      documento: {
         type: Sequelize.STRING
       },
       email: {

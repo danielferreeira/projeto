@@ -16,7 +16,21 @@ https://www.iconfinder.com/Makoto_msk */}
         <ul className="navbar-nav align-items-center">
           <li className="nav-item ml-5">
             <Link to="/" className="nav-link">
-              produtos
+              Produtos
+            </Link>
+          </li>
+        </ul>
+        <ul className="navbar-nav align-items-center">
+          <li className="nav-item ml-5">
+            <Link to="/homevendedor" className="nav-link">
+              Meu perfil 
+            </Link>
+          </li>
+        </ul>
+        <ul className="navbar-nav align-items-right">
+          <li className="nav-item ml-5">
+            <Link to="/login" className="nav-link">
+              Login 
             </Link>
           </li>
         </ul>
@@ -38,7 +52,6 @@ const Nav = styled.nav`
   .nav-link {
     color: var(--mainWhite) !important;
     font-size:1.3rem;
-    text-transform:capitalize;
   }
   @media (max-width: 576px) {
     .navbar-nav {

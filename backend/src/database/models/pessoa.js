@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
     },
     nome: DataTypes.STRING,
-    cpf: DataTypes.STRING,
+    documento: DataTypes.STRING,
     email: {
       type: DataTypes.STRING,
       required: true,

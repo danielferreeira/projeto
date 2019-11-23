@@ -1,0 +1,21 @@
+
+.paperhomevendedor {
+    margin-left: auto;
+    border: solid 1px lightgray;
+    margin-right: 100px;
+    margin-top: 15px;
+    width: 600px;
+    height: 400px;
+    padding: 24px;
+}
+
+.paperhome {
+    border: solid 1px lightgray;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    margin-right: auto;
+    margin-top: 15px;
+    width: 400px;
+    height: 400px;
+    padding: 24px;
+}
