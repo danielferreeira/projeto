@@ -1,10 +1,11 @@
+.div {
+    display: flex;
+}
 
 .paperhomevendedor {
-    margin-left: auto;
-    border: solid 1px lightgray;
-    margin-right: 100px;
     margin-top: 15px;
-    width: 600px;
+    border: solid 1px lightgray;
+    width: 800px;
     height: 400px;
     padding: 24px;
 }
@@ -19,3 +20,14 @@
     height: 400px;
     padding: 24px;
 }
+
+.left-sidebar {
+    margin-left: 100px;
+    border: solid 1px lightgray;
+    margin-right: 100px;
+    margin-top: 15px;
+    width: 250px;
+    height: 400px;
+    padding: 24px;
+}
+

@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { ProductConsumer } from "../context";
-import img from './product-5.png'
+
 export default class Product extends Component {
   render() {
-    const { idproduto, nome, descricao, valor, inCart } = this.props.product;
+    const { idproduto, nome, descricao, valor, inCart, imgURL} = this.props.product;
     return (
       <ProductWrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3">
         <div className="card">
@@ -17,7 +17,7 @@ export default class Product extends Component {
                   onClick={() => value.handleDetail(idproduto)}
                 >
                   <Link to="/details">
-                    <img src={img} alt="" className="card-img-top" />
+                    <img src={imgURL} alt="" className="card-img-top" />
                   </Link>
                   <button
                     className="cart-btn"

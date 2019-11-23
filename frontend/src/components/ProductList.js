@@ -8,6 +8,7 @@ export default class ProductList extends Component {
 
 
   render() {
+    var PRODUTOS = require('./produtos.json');
     return (
       <React.Fragment>
         <ProductWrapper className="py-5">
@@ -15,7 +16,7 @@ export default class ProductList extends Component {
             <div className="row">
               <ProductConsumer>
                 {value => {
-                  return value.products.map(product => {
+                  return /*value.products*/PRODUTOS.map(product => {
                     return <Product key={product.idproduto} product={product} />;
                   });
                 }}
