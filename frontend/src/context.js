@@ -14,9 +14,14 @@ class ProdutoProvider extends Component {
     cartTax: 0,
     cartTotal: 0
   };
-  async componentDidMount() {
-    await this.setProdutos();
-  }
+  //async componentDidMount() {
+  //  await this.setProdutos();
+  //}
+
+  componentDidMount() {
+    var DATABASE = require('./DATABASE.json');
+      this.setState(DATABASE);
+    }
 
   setProdutos = async () => {
     let produtos = [];

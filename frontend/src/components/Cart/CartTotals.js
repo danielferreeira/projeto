@@ -41,11 +41,12 @@ export default class CartTotals extends Component {
                   <span className="text-title"> Total :</span>{" "}
                   <strong>R$ {cartTotal} </strong>
                 </h5>
+                {/*}
                 <PayPalButton
                   total={cartTotal}
                   clearCart={clearCart}
                   history={history}
-                />
+                  />*/}
               </div>
             </div>
           </div>

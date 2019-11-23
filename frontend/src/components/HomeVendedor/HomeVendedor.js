@@ -8,7 +8,7 @@ import EditIcon from '@material-ui/icons/Edit';
 export default class HomeVendedor extends Component {
 
   state = {
-    content    : '',
+    content    : "Carregar produto",
   }
 
   handlesidebar = (event) => {
