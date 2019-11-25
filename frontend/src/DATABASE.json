@@ -1,18 +1,16 @@
 {
     "produtos": [
-        {"idproduto" : 1, "nome" : "cuia", "descricao" : "teste de cuia", "valor" : 20.00, "inCart" : true, "imgURL" : "./img/product-1.png", "idvendedor" : 1},
-        {"idproduto" : 2, "nome" : "Chinelo de Crochê", "descricao" : "teste de cuia", "valor" : 20.00, "inCart" : false, "imgURL" : "./img/product-2.png", "idvendedor" : 2},
-        {"idproduto" : 3, "nome" : "tapete", "descricao" : "teste de cuia", "valor" : 20.00, "inCart" : true, "imgURL" : "./img/product-3.png", "idvendedor" : 1},
-        {"idproduto" : 4, "nome" : "cortina", "descricao" : "teste de cuia", "valor" : 20.00, "inCart" : false, "imgURL" : "./img/product-4.png", "idvendedor" : 2},
-        {"idproduto" : 5, "nome" : "trilho de mesa", "descricao" : "teste de cuia", "valor" : 20.00, "inCart" : true, "imgURL" : "./img/product-5.png", "idvendedor" : 1}
+        {"idproduto" : 1, "nome" : "Cuia com pérolas", "descricao" : "Cuia feita com perolas", "valor" : 35.00, "inCart" : true, "imgURL" : "./img/product-1.png", "idvendedor" : 1},
+        {"idproduto" : 2, "nome" : "Chinelo com pérolas", "descricao" : "Chinelo havaianas com perolas", "valor" : 20.00, "inCart" : false, "imgURL" : "./img/product-2.png", "idvendedor" : 2},
+        {"idproduto" : 3, "nome" : "Tapete de crochê", "descricao" : "Tapete para sala ou cozinha feito de crochê", "valor" : 40.00, "inCart" : true, "imgURL" : "./img/product-3.png", "idvendedor" : 1},
+        {"idproduto" : 4, "nome" : "Cortina de crochê", "descricao" : "Cortina feita com crochê", "valor" : 100.00, "inCart" : false, "imgURL" : "./img/product-4.png", "idvendedor" : 2}
     ],
-    "cartSubTotal" : 0,
+    "cartSubTotal" : 55,
     "cartTax" : 0,
-    "cartTotal" : 0,
+    "cartTotal" : 55,
     "cart" : [
-        {"id" : 1, "nome" : "cuia", "price" : 200.00, "count" : 10, "total" : 20.00, "imgURL" : "./img/product-1.png"},
-        {"id" : 2, "nome" : "cuia", "price" : 200.00, "count" : 10, "total" : 20.00, "imgURL" : "./img/product-2.png"},
-        {"id" : 3, "nome" : "cuia", "price" : 200.00, "count" : 10, "total" : 20.00, "imgURL" : "./img/product-3.png"}
+        {"id" : 1, "nome" : "Cuia com pérolas", "price" : 35.00, "count" : 1, "total" : 35.00, "imgURL" : "./img/product-1.png"},
+        {"id" : 2, "nome" : "Chinelo com pérolas", "price" : 20.00, "count" : 1, "total" : 20.00, "imgURL" : "./img/product-2.png"}
     ]
 }
 

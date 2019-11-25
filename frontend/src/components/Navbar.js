@@ -22,7 +22,7 @@ https://www.iconfinder.com/Makoto_msk */}
         </ul>
         <ul className="navbar-nav align-items-center">
           <li className="nav-item ml-5">
-            <Link to="/homevendedor" className="nav-link">
+            <Link to="/homeusuario" className="nav-link">
               Meu perfil 
             </Link>
           </li>
@@ -30,7 +30,7 @@ https://www.iconfinder.com/Makoto_msk */}
         <ul className="navbar-nav align-items-right">
           <li className="nav-item ml-5">
             <Link to="/login" className="nav-link">
-              Login 
+              Logout 
             </Link>
           </li>
         </ul>
