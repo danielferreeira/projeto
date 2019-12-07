@@ -3,9 +3,22 @@ import Produto from "./Produto";
 import styled from "styled-components";
 import { ProdutoConsumer } from "../../context";
 import _ from "lodash";
+import { buscarProdutos } from "./request";
 
 export default class ProdutoList extends Component {
 
+  state = {
+    produtos: []
+  }
+
+  async componentDidMount() {
+    const produtos = await buscarProdutos();
+
+    if (produtos) {
+      this.setState(produtos);
+    }
+
+  }
 
   render() {
     var VENDEDORES = require('./vendedores.json');
@@ -17,8 +30,8 @@ export default class ProdutoList extends Component {
               <ProdutoConsumer>
                 {value => {
                   return value.produtos.map(produto => {
-                    const vendedor = _.find(VENDEDORES, {idvendedor : produto.idvendedor});
-                    return <Produto key={produto.idproduto} produto={produto} vendedor={vendedor}/>;
+                    const vendedor = _.find(VENDEDORES, { idvendedor: produto.idvendedor });
+                    return <Produto key={produto.idproduto} produto={produto} vendedor={vendedor} />;
                   });
                 }}
               </ProdutoConsumer>

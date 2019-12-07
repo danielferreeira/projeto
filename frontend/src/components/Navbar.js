@@ -30,7 +30,7 @@ https://www.iconfinder.com/Makoto_msk */}
         <ul className="navbar-nav align-items-right">
           <li className="nav-item ml-5">
             <Link to="/login" className="nav-link">
-              Logout 
+              Logout
             </Link>
           </li>
         </ul>
