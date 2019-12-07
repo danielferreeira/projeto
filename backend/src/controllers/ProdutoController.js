@@ -4,9 +4,19 @@ class ProdutoController {
     async buscarProdutos(req, res) {
 
         const produtos = await Produto.findAll();
-        //const produtos = await Produto.findAll({where: { name: 'A Project'}});
 
-        return res.status(200).send(produtos);
+        if (!produtos) {
+            return res.status(400).send({ error: 'Ocorreu um erro ao buscar os produtos.' });
+        } else {
+            return res.status(200).send(produtos);
+        }
+
+    }
+
+    async criarProduto(req, res) {
+        console.log(req.body)
+
+        return res.status(201).send({});
     }
 }
 module.exports = new ProdutoController();
