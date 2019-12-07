@@ -11,6 +11,17 @@ export default class Login extends Component {
     error: ''
   }
 
+  componentDidMount() {
+    const login = localStorage.getItem('@login/user');
+    const senha = localStorage.getItem('@login/password');
+
+    if (login && senha) {
+      this.setState({ login, senha });
+      this.validarLogin();
+    }
+
+  }
+
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   }
@@ -19,13 +30,14 @@ export default class Login extends Component {
     const { login, senha } = this.state;
 
     const resposta = await fazerLogin(login, senha);
- 
+
     if (resposta.error) {
       this.setState({ error: resposta.error })
     } else {
       localStorage.setItem('@login/user', login);
       localStorage.setItem('@login/password', senha);
-      
+      localStorage.setItem('artesao', resposta.artesao)
+
       this.props.history.push('/home')
     }
 
