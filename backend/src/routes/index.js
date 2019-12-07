@@ -10,6 +10,8 @@ routes.get('/produtos', ProdutoController.buscarProdutos);
 routes.post('/produto', ProdutoController.criarProduto);
 
 routes.get('/pessoas', PessoaController.buscarPessoas);
+routes.post('/criarpessoa', PessoaController.criarPessoa);
+
 routes.post('/login', PessoaController.validarLoginPessoa);
 
 routes.get('/vendedores', VendedorController.buscarVendedores);

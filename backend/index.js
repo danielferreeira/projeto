@@ -12,10 +12,6 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.use(cors());
 
-app.get('/', (req, res) => {
-    res.send('OK');
-})
-
 app.use(require('./src/routes'));
 
 app.listen(PORT, () => {

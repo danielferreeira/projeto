@@ -20,8 +20,8 @@ class ProdutoProvider extends Component {
 
   componentDidMount() {
     var DATABASE = require('./DATABASE.json');
-      this.setState(DATABASE);
-    }
+    this.setState(DATABASE);
+  }
 
   setProdutos = async () => {
     let produtos = [];

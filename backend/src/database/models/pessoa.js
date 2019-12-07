@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
     },
     nome: DataTypes.STRING,
+    artesao: DataTypes.BOOLEAN,
     documento: DataTypes.STRING,
     email: {
       type: DataTypes.STRING,

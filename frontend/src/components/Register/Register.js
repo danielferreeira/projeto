@@ -1,45 +1,45 @@
 import React, { Component } from "react";
 import "./Register.css";
-import {Grid, Switch, TextField, Button, Paper, Typography} from '@material-ui/core';
-import axios from 'axios';
+import { Grid, Switch, TextField, Button, Paper, Typography } from '@material-ui/core';
+import { criarConta } from './request';
 
 export default class Register extends Component {
 
   state = {
-    nome       : '',
-    documento  : '',
-    contato    : '',
-    endereco   : '',
-    login      : '',
-    senha      : '',
-    atribuicao : false,
-
+    nome: '',
+    documento: '',
+    contato: '',
+    endereco: '',
+    email: '',
+    senha: '',
+    artesao: false,
   }
+
   handleChange = (event) => {
-    this.setState({[event.target.name] : event.target.value});
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   handleSwitch = (event) => {
-    this.setState({[event.target.name] : event.target.checked});
+    this.setState({ [event.target.name]: event.target.checked });
   }
 
-  savePessoa = () => {
-    axios.post('http://localhost:3000/savepessoa', this.state)
-      .then(function(response){
-        console.log('salvo com sucesso')
-      }); 
+  savePessoa = async () => {
+    const pessoa = await criarConta(this.state);
+
+    if (pessoa.error) {
+      this.setState({ error: pessoa.error })
+    } else {
+      this.props.history.push('/login')
+    }
   }
 
   getPessoa = async () => {
-    const pessoas = await axios.get('http://localhost:3000/pessoas');
-    this.setState({teste : pessoas})
-  }  
 
+  }
 
   async componentDidMount() {
     await this.getPessoa();
   }
-  
 
   render() {
     return (
@@ -48,18 +48,17 @@ export default class Register extends Component {
           className="paper"
           elevation={2}
         >
-           <Typography component="div">
+          <Typography component="div">
             <Grid component="label" container alignItems="center" spacing={1}>
-              <Grid item>Usuário</Grid>
               <Grid item>
                 <Switch
-                  name="atribuicao"
-                  checked={this.state.atribuicao}
+                  name="artesao"
+                  checked={this.state.artesao}
                   onChange={this.handleSwitch}
-                  value={this.state.atribuicao}
+                  value={this.state.artesao}
                 />
               </Grid>
-              <Grid item>Artesão</Grid>
+              <Grid item>Você é um artesão?</Grid>
             </Grid>
           </Typography>
           <TextField
@@ -89,11 +88,12 @@ export default class Register extends Component {
             <TextField
               className="flex mb-3 mr-1"
               variant="outlined"
-              id="login"
-              label="Login"
-              name="login"
-              style={{width : "49%"}}
-              value={this.state.login}
+              id="email"
+              type="email"
+              label="Email"
+              name="email"
+              style={{ width: "49%" }}
+              value={this.state.email}
               onChange={this.handleChange}
             />
             <TextField
@@ -103,7 +103,7 @@ export default class Register extends Component {
               label="Senha"
               name="senha"
               type="password"
-              style={{width : "50%"}}
+              style={{ width: "50%" }}
               value={this.state.senha}
               onChange={this.handleChange}
             />
@@ -131,7 +131,7 @@ export default class Register extends Component {
             onChange={this.handleChange}
           />
 
-          <Button 
+          <Button
             variant="contained"
             className="buttonRegister justify-center"
             color="inherit"
@@ -140,10 +140,10 @@ export default class Register extends Component {
               this.savePessoa();
             }}
           >
-              Criar conta
+            Criar conta
           </Button>
         </Paper>
-        
+
       </React.Fragment>
     );
   }

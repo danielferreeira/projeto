@@ -11,6 +11,7 @@ module.exports = {
       nome: {
         type: Sequelize.STRING
       },
+      artesao: Sequelize.BOOLEAN,
       documento: {
         type: Sequelize.STRING
       },

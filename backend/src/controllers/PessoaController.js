@@ -9,6 +9,17 @@ class PessoaController {
         return res.status(200).send(pessoas);
     }
 
+    async criarPessoa(req, res) {
+
+        const pessoa = await Pessoa.create({ ...req.body });
+
+        if (!pessoa) {
+            return res.status(400).send({ error: 'Ocorreu um erro salvar o registro.' })
+        } else {
+            return res.status(200).send(pessoa);
+        }
+    }
+
     async validarLoginPessoa(req, res) {
         const { email, senha } = req.body;
 

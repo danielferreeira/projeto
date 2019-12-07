@@ -23,12 +23,12 @@ export default class Login extends Component {
     if (resposta.error) {
       this.setState({ error: resposta.error })
     } else {
+      localStorage.setItem('@login/user', login);
+      localStorage.setItem('@login/password', senha);
+      
       this.props.history.push('/home')
     }
 
-    localStorage.setItem('@login/user', login);
-    localStorage.setItem('@login/password', senha);
-    //window.location.reload();
   }
 
   render() {

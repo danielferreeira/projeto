@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { ButtonContainer } from "./Button";
 export default class Navbar extends Component {
+
+  handleLogount = () => {
+    localStorage.clear();
+  }
+
   render() {
     return (
       <Nav className="navbar navbar-expand-sm  navbar-dark px-sm-5">
-        {/* 
-https://www.iconfinder.com/icons/1243689/call_phone_icon
-Creative Commons (Attribution 3.0 Unported);
-https://www.iconfinder.com/Makoto_msk */}
         <Link to="/">
           <img src="img/logo.jpg" alt="store" height="80px" width="80px" className="navbar-brand" />
         </Link>
@@ -23,13 +24,13 @@ https://www.iconfinder.com/Makoto_msk */}
         <ul className="navbar-nav align-items-center">
           <li className="nav-item ml-5">
             <Link to="/homeusuario" className="nav-link">
-              Meu perfil 
+              Meu perfil
             </Link>
           </li>
         </ul>
         <ul className="navbar-nav align-items-right">
           <li className="nav-item ml-5">
-            <Link to="/login" className="nav-link">
+            <Link to="/login" onClick={this.handleLogount} className="nav-link">
               Logout
             </Link>
           </li>
