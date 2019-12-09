@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { ProdutoConsumer } from "../../context";
-import { ButtonContainer } from "../Button";
+import { ProdutoConsumer } from "../../../../context";
+import { ButtonContainer } from "../../../Button";
 import { Link } from "react-router-dom";
 import {Dialog} from '@material-ui/core';
 

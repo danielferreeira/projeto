@@ -17,6 +17,7 @@ module.exports = {
       valor: {
         type: Sequelize.DECIMAL(18, 2)
       },
+      imagem: Sequelize.TEXT,
       idvendedor: {
         type: Sequelize.INTEGER,
         allowNull: false,

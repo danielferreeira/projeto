@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { ProdutoConsumer } from "../../context";
+import { ProdutoConsumer } from "../../../../context";
 import ProdutoDetalhes from "./ProdutoDetalhes";
 
 export default class Produto extends Component {

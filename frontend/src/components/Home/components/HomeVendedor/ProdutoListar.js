@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Produto from "./Produto";
 import styled from "styled-components";
-import { ProdutoConsumer } from "../../context";
+import { ProdutoConsumer } from "../../../../context";
 import _ from "lodash";
 
 export default class ProdutoListar extends Component {

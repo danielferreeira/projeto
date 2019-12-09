@@ -4,8 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, Switch } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import ProdutoList from "./components/Produto/ProdutoList";
-//import HomeVendedor from "./components/HomeVendedor/HomeVendedor";
-import HomeUsuario from "./components/HomeUsuario/HomeUsuario";
+import Home from "./components/Home";
 import Login from "./components/Login/Login";
 import Register from "./components/Register/Register";
 import Default from "./components/Default";
@@ -19,8 +18,7 @@ class App extends Component {
         <Navbar />
         <Switch>
           <Route exact path="/" component={ProdutoList} />
-          {/*<Route path="/homevendedor" component={HomeVendedor} />*/}
-          <Route path="/homeusuario" component={HomeUsuario} />
+          <Route path="/home" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <Route path="/home" component={ProdutoList} />

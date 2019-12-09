@@ -11,7 +11,6 @@ export default class HomeVendedor extends Component {
     nome            : 'Daniel',
     documento       : '011.115.889-08',
     email           : 'danielferreiramh@gmail.com',
-
   }
 
   handleChange = (event) => {

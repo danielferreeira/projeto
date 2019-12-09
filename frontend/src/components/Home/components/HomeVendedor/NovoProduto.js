@@ -10,9 +10,8 @@ export default class HomeVendedor extends Component {
   state = {
     nome       : '',
     descricao  : '',
-    preco      : '',
+    valor      : '',
     imagem     : '',
-
   }
 
   handleChange = (event) => {
