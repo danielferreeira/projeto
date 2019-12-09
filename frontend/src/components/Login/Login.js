@@ -66,7 +66,11 @@ export default class Login extends Component {
                   heigth: '30%',
                 }}
               />
-              {this.state.error ? this.state.error : ''}
+              {this.state.error &&
+              <div class="alert alert-danger" role="alert">
+                {this.state.error}
+              </div>
+              }
               <TextField
                 className="mb-3"
                 variant="outlined"
