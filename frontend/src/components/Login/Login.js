@@ -6,17 +6,17 @@ import { fazerLogin } from "./request";
 export default class Login extends Component {
 
   state = {
-    login: '',
+    email: '',
     senha: '',
     error: ''
   }
 
   componentDidMount() {
-    const login = localStorage.getItem('@login/user');
-    const senha = localStorage.getItem('@login/password');
+    const email = localStorage.getItem('email');
+    const senha = localStorage.getItem('senha');
 
-    if (login && senha) {
-      this.setState({ login, senha });
+    if (email && senha) {
+      this.setState({ email, senha });
       this.validarLogin();
     }
 
@@ -27,16 +27,18 @@ export default class Login extends Component {
   }
 
   validarLogin = async () => {
-    const { login, senha } = this.state;
+    const { email, senha } = this.state;
 
-    const resposta = await fazerLogin(login, senha);
-
+    const resposta = await fazerLogin(email, senha);
+    console.log(resposta)
     if (resposta.error) {
       this.setState({ error: resposta.error })
     } else {
-      localStorage.setItem('@login/user', login);
-      localStorage.setItem('@login/password', senha);
-      localStorage.setItem('artesao', resposta.artesao)
+      localStorage.setItem('email', email);
+      localStorage.setItem('senha', senha);
+      localStorage.setItem('nome', resposta.nome)
+      localStorage.setItem('artesao', resposta.artesao);
+      localStorage.setItem('idpessoa', resposta.idpessoa)
 
       this.props.history.push('/home')
     }
@@ -68,11 +70,11 @@ export default class Login extends Component {
               <TextField
                 className="mb-3"
                 variant="outlined"
-                id="login"
-                label="Login"
-                name="login"
+                id="email"
+                label="E-mail"
+                name="email"
                 fullWidth
-                value={this.state.login}
+                value={this.state.email}
                 onChange={this.handleChange}
               />
               <TextField
