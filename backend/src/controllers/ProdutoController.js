@@ -1,9 +1,21 @@
 const Produto = require('../database/models').Produto;
 
 class ProdutoController {
-    async buscarProdutos(req, res) {
+    async buscarProdutosVendedor(req, res) {
 
         const produtos = await Produto.findAll({ where: { idpessoa: req.params.idpessoa } });
+
+        if (!produtos) {
+            return res.status(400).send({ error: 'Ocorreu um erro ao buscar os produtos.' });
+        } else {
+            return res.status(200).send(produtos);
+        }
+
+    }
+
+    async buscarProdutos(req, res) {
+
+        const produtos = await Produto.findAll();
 
         if (!produtos) {
             return res.status(400).send({ error: 'Ocorreu um erro ao buscar os produtos.' });

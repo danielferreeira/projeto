@@ -3,7 +3,7 @@ import Produto from "./Produto";
 import styled from "styled-components";
 import { ProdutoConsumer } from "../../../../context";
 import _ from "lodash";
-import { buscarProdutos } from "./requests";
+import { buscarProdutosVendedor } from "./requests";
 
 export default class ProdutoListar extends Component {
 
@@ -12,7 +12,7 @@ export default class ProdutoListar extends Component {
   }
 
   async componentDidMount() {
-    const produtos = await buscarProdutos();
+    const produtos = await buscarProdutosVendedor();
 
     this.setState({ produtos })
   }

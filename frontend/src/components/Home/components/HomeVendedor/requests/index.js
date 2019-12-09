@@ -15,9 +15,8 @@ export function salvarProduto(dados) {
     return pessoa;
 }
 
-export function buscarProdutos() {
-
-    const pessoa = api.get('/produtos')
+export function buscarProdutosVendedor() {
+    const pessoa = api.get('/produtosvendedor')
         .then(resp => {
             return resp.data;
         })

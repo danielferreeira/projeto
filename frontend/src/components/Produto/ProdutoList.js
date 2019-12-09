@@ -17,7 +17,7 @@ export default class ProdutoList extends Component {
     if (produtos) {
       this.setState(produtos);
     }
-
+console.log(produtos)
   }
 
   render() {

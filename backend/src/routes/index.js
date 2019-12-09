@@ -6,6 +6,7 @@ const ProdutoController = require('../controllers/ProdutoController');
 const PessoaController = require('../controllers/PessoaController');
 
 routes.get('/produtos', ProdutoController.buscarProdutos);
+routes.get('/produtosvendedor', ProdutoController.buscarProdutosVendedor);
 routes.post('/criarproduto', ProdutoController.criarProduto);
 
 routes.get('/pessoas', PessoaController.buscarPessoas);
