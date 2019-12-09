@@ -1,24 +1,26 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Produto = sequelize.define('Produtos', {
+  const Produto = sequelize.define('Produto', {
     idproduto: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    idvendedor: {
+    idpessoa: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'Vendedores',
-        key: 'idvendedor'
+        model: 'Pessoa',
+        key: 'idpessoa'
       }
     },
     nome: DataTypes.STRING,
     descricao: DataTypes.STRING,
     valor: DataTypes.DECIMAL(18, 2),
     imagem: DataTypes.TEXT
-  }, {});
-  Produto.associate = function(models) {
+  }, {
+    freezeTableName: true
+  });
+  Produto.associate = function (models) {
     // associations can be defined here
 
     // Produto.belongsToMany(models.Pedido, {
@@ -26,11 +28,11 @@ module.exports = (sequelize, DataTypes) => {
     //   foreignKey: 'idproduto'
     // });
 
-    Produto.belongsTo(models.Vendedor, {
-      foreignKey: 'idvendedor'
+    Produto.belongsTo(models.Pessoa, {
+      foreignKey: 'idpessoa'
     });
 
-    
+
   };
   return Produto;
 };

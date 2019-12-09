@@ -1,4 +1,4 @@
-const Produto = require('../database/models').Produtos;
+const Produto = require('../database/models').Produto;
 
 class ProdutoController {
     async buscarProdutos(req, res) {
@@ -14,9 +14,15 @@ class ProdutoController {
     }
 
     async criarProduto(req, res) {
-        console.log(req.body)
+        const dados = req.body;
 
-        return res.status(201).send({});
+        const produto = await Produto.create(dados);
+
+        if(!produto) {
+            return res.status(400).send({ error: 'Ocorreu um erro ao salvar o produto.' });
+        } else {
+            return res.status(201).send(produto);
+        }
     }
 }
 module.exports = new ProdutoController();

@@ -9,19 +9,21 @@ module.exports = (sequelize, DataTypes) => {
     idproduto: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'Produtos',
+        model: 'Produto',
         key: 'idproduto'
       }
     },
     idpedido: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'Pedidos',
+        model: 'Pedido',
         key: 'idpedido'
       }
     },
     quantidade: DataTypes.INTEGER
-  }, {});
+  }, {
+    freezeTableName: true
+  });
   PedidoProduto.associate = function(models) {
 
   };

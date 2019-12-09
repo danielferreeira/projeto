@@ -9,24 +9,25 @@ module.exports = (sequelize, DataTypes) => {
     idpessoa: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'Pessoas',
+        model: 'Pessoa',
         key: 'idpessoa'
       }
     },
     descricao: DataTypes.STRING,
     lancamento: DataTypes.DATE,
     baixa: DataTypes.DATE
-  }, {});
+  }, {
+    freezeTableName: true
+  });
   Pedido.associate = function(models) {
 
     Pedido.belongsTo(models.Pessoa, {
       foreignKey: 'idpessoa'
     });
 
-    // Pedido.belongsToMany(models.Produto, {
-    //   through: 'PedidoProdutos',
-    //   foreignKey: 'idpedido'
-    // });
+    Pedido.hasMany(models.Produto, {
+      foreignKey: 'idproduto'
+    });
   };
   return Pedido;
 };

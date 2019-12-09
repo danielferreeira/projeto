@@ -14,18 +14,20 @@ module.exports = (sequelize, DataTypes) => {
     idpessoa: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'Pessoas',
+        model: 'Pessoa',
         key: 'idpessoa'
       }
     },
     idcidade: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'Cidades',
+        model: 'Cidade',
         key: 'idcidade'
       }
     }
-  }, {});
+  }, {
+    freezeTableName: true
+  });
   Endereco.associate = function (models) {
     // associations can be defined here
     Endereco.belongsTo(models.Pessoa, {

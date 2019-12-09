@@ -1,35 +1,50 @@
 import React, { Component } from "react";
 import "./HomeVendedor.css";
-import {TextField, Button, Paper, MenuItem, MenuList, Typography, ListItemIcon } from '@material-ui/core';
+import { TextField, Button, Paper } from '@material-ui/core';
 import _ from 'lodash';
-import UploadIcon from '@material-ui/icons/CloudUpload';
-import EditIcon from '@material-ui/icons/Edit';
+import { salvarProduto } from './requests';
+import { withSnackbar } from 'notistack';
 
-export default class HomeVendedor extends Component {
+
+class HomeVendedor extends Component {
 
   state = {
-    nome       : '',
-    descricao  : '',
-    valor      : '',
-    imagem     : '',
+    nome: '',
+    descricao: '',
+    valor: 0,
+    imagem: '',
+    idpessoa: localStorage.getItem('idpessoa')
   }
 
   handleChange = (event) => {
-    this.setState({[event.target.name] : event.target.value});
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   fileSelectedHandler = event => {
     console.log(event);
   }
-  
+
+  criarProduto = async () => {
+    const produto = await salvarProduto(this.state);
+
+    if (produto) {
+      this.props.enqueueSnackbar('Produto criado com sucesso.', { variant: 'success' })
+      this.limparFormulario();
+    }
+  }
+
+  limparFormulario = () => {
+    this.setState({ nome: '', descricao: '', valor: 0, imagem: '' })
+  }
+
   render() {
     return (
       <React.Fragment>
         <Paper
-            className="paperhomevendedor"
-            elevation={2}
+          className="paperhomevendedor"
+          elevation={2}
         >
-        <TextField
+          <TextField
             className="mb-3"
             variant="outlined"
             id="nome"
@@ -38,9 +53,9 @@ export default class HomeVendedor extends Component {
             fullWidth
             value={this.state.nome}
             onChange={this.handleChange}
-        />
-    
-        <TextField
+          />
+
+          <TextField
             className="mb-3"
             variant="outlined"
             id="descricao"
@@ -49,35 +64,34 @@ export default class HomeVendedor extends Component {
             fullWidth
             value={this.state.descricao}
             onChange={this.handleChange}
-        />
-    
-        <div className="flex">
+          />
+
+          <div className="flex">
             <TextField
-            className="flex mb-3 mr-1"
-            variant="outlined"
-            id="preco"
-            label="Preço"
-            name="preco"
-            fullWidth
-            style={{width : "50%"}}
-            value={this.state.preco}
-            onChange={this.handleChange}
+              className="flex mb-3 mr-1"
+              variant="outlined"
+              id="valor"
+              label="Preço"
+              type="number"
+              name="valor"
+              fullWidth
+              style={{ width: "50%" }}
+              value={this.state.valor}
+              onChange={this.handleChange}
             />
-        </div>
-    
-        <div className="App">
-            <input type="file" className="flex mb-3 mr-1" onChange={this.fileSelectedHandler}/>
-        </div>
-    
-        <Button 
+          </div>
+
+          <div className="App">
+            <input type="file" className="flex mb-3 mr-1" onChange={this.fileSelectedHandler} />
+          </div>
+
+          <Button
             variant="contained"
             className="buttonHomeVendedor justify-center"
             color="inherit"
             size="large"
-            onClick={() => {
-            this.saveProduto();
-            }}
-        >
+            onClick={() => this.criarProduto()}
+          >
             Criar produto
         </Button>
         </Paper>
@@ -85,3 +99,5 @@ export default class HomeVendedor extends Component {
     );
   }
 }
+
+export default withSnackbar(HomeVendedor);

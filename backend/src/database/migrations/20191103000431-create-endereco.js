@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Enderecos', {
+    return queryInterface.createTable('Endereco', {
       idendereco: {
         allowNull: false,
         autoIncrement: true,
@@ -28,7 +28,7 @@ module.exports = {
         allowNull: false,
         onDelete: 'CASCADE',
         references: {
-          model: 'Pessoas',
+          model: 'Pessoa',
           key: 'idpessoa'
         }
       },
@@ -37,7 +37,7 @@ module.exports = {
         allowNull: false,
         onDelete: 'CASCADE',
         references: {
-          model: 'Cidades',
+          model: 'Cidade',
           key: 'idcidade'
         }
       },
@@ -52,7 +52,7 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Enderecos');
+    return queryInterface.dropTable('Endereco');
   }
 };
 

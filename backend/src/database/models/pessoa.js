@@ -18,7 +18,9 @@ module.exports = (sequelize, DataTypes) => {
       required: true,
       select: false
     }
-  }, {});
+  }, {
+    freezeTableName: true
+  });
   Pessoa.associate = function(models) {
     // associations can be defined here
   };

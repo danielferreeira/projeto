@@ -7,16 +7,16 @@ import ProdutoDetalhes from "./ProdutoDetalhes";
 export default class Produto extends Component {
 
   state = {
-    produtoOpen : null,
+    produtoOpen: null,
   }
 
   handleDetail = (_Value) => {
-    this.setState({"produtoOpen" : _Value});
+    this.setState({ "produtoOpen": _Value });
   }
 
   render() {
-    const {produto, vendedor} = this.props;
-    const {produtoOpen} = this.state;
+    const { produto } = this.props;
+
     return (
       <ProdutoWrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3">
         <div className="card">
@@ -27,8 +27,8 @@ export default class Produto extends Component {
                   className="img-container p-5"
                   onClick={() => this.handleDetail(produto)}
                 >
-                  <img src={produto.imgURL} alt="" className="card-img-top" />
-                  
+                  <img src={produto.imagem || "https://www.lucastavares.net/wp/wp-content/themes/ctheme/assets/img/img-default.jpg"} alt="" className="card-img-top" />
+
                 </div>
               );
             }}

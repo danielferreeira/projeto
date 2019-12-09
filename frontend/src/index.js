@@ -8,7 +8,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { ProdutoProvider } from "./context";
 
 ReactDOM.render(
-  <SnackbarProvider>
+  <SnackbarProvider anchorOrigin={{ vertical: 'top', horizontal: 'right' }}>
     <ProdutoProvider>
       <Router>
         <App />

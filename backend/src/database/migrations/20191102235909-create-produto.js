@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Produtos', {
+    return queryInterface.createTable('Produto', {
       idproduto: {
         allowNull: false,
         autoIncrement: true,
@@ -18,13 +18,12 @@ module.exports = {
         type: Sequelize.DECIMAL(18, 2)
       },
       imagem: Sequelize.TEXT,
-      idvendedor: {
+      idpessoa: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        onDelete: 'CASCADE',
         references: {
-          model: 'Vendedores',
-          key: 'idvendedor'
+          model: 'Pessoa',
+          key: 'idpessoa'
         }
       },
       createdAt: {

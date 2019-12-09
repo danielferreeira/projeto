@@ -8,7 +8,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     nome: DataTypes.STRING,
     uf: DataTypes.STRING
-  }, {});
+  }, {
+    freezeTableName: true
+  });
   Cidade.associate = function (models) {
     // associations can be defined here
   };
