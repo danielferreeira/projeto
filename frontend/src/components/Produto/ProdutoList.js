@@ -7,19 +7,6 @@ import { buscarProdutos } from "./request";
 
 export default class ProdutoList extends Component {
 
-  state = {
-    produtos: []
-  }
-
-  async componentDidMount() {
-    const produtos = await buscarProdutos();
-
-    if (produtos) {
-      this.setState(produtos);
-    }
-console.log(produtos)
-  }
-
   render() {
     var VENDEDORES = require('./vendedores.json');
     return (
@@ -29,9 +16,9 @@ console.log(produtos)
             <div className="row">
               <ProdutoConsumer>
                 {value => {
+                  console.log(value)
                   return value.produtos.map(produto => {
-                    const vendedor = _.find(VENDEDORES, { idvendedor: produto.idvendedor });
-                    return <Produto key={produto.idproduto} produto={produto} vendedor={vendedor} />;
+                    return <Produto key={produto.idproduto} produto={produto} vendedor={produto.Pessoa} />;
                   });
                 }}
               </ProdutoConsumer>

@@ -1,4 +1,5 @@
 const Produto = require('../database/models').Produto;
+const Pessoa = require('../database/models').Pessoa;
 
 class ProdutoController {
     async buscarProdutosVendedor(req, res) {
@@ -15,7 +16,11 @@ class ProdutoController {
 
     async buscarProdutos(req, res) {
 
-        const produtos = await Produto.findAll();
+        const produtos = await Produto.findAll({
+            include: [{
+                model: Pessoa
+            }]
+        })
 
         if (!produtos) {
             return res.status(400).send({ error: 'Ocorreu um erro ao buscar os produtos.' });
@@ -30,7 +35,7 @@ class ProdutoController {
 
         const produto = await Produto.create(dados);
 
-        if(!produto) {
+        if (!produto) {
             return res.status(400).send({ error: 'Ocorreu um erro ao salvar o produto.' });
         } else {
             return res.status(201).send(produto);

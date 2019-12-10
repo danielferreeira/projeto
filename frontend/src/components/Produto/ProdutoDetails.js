@@ -25,12 +25,12 @@ export default class ProdutoDetails extends Component {
                         {/* end of title */}
                         <div className="row">
                             <div className="col-10 mx-auto col-md-6 my-3">
-                                <img src={produto.imgURL} className="img-fluid" alt="" />
+                                <img src={produto.imagem || "https://www.lucastavares.net/wp/wp-content/themes/ctheme/assets/img/img-default.jpg"} className="img-fluid" alt="" />
                             </div>
                             {/* prdoduct info */}
                             <div className="col-10 mx-auto col-md-6 my-3 text-capitalize">
                                 <h4 className="text-title text-uppercase text-muted mt-3 mb-2">
-                                    Feito por : <span className="text-uppercase">{vendedor.razaosocial}</span>
+                                    Feito por : <span className="text-uppercase">{vendedor.nome}</span>
                                 </h4>
                                 <h4 className="text-blue">
                                     <strong>

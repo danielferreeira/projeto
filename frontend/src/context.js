@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { storeProdutos, detailProduto } from "./data";
 import axios from 'axios';
+import { buscarProdutos } from "./components/Produto/request";
 const ProdutoContext = React.createContext();
 
 class ProdutoProvider extends Component {
@@ -14,13 +15,13 @@ class ProdutoProvider extends Component {
     cartTax: 0,
     cartTotal: 0
   };
-  //async componentDidMount() {
-  //  await this.setProdutos();
-  //}
 
-  componentDidMount() {
-    var DATABASE = require('./DATABASE.json');
-    this.setState(DATABASE);
+  async componentDidMount() {
+    const produtos = await buscarProdutos();
+
+    if (produtos) {
+      this.setState({ produtos });
+    }
   }
 
   setProdutos = async () => {
@@ -177,7 +178,6 @@ class ProdutoProvider extends Component {
     return (
       <ProdutoContext.Provider
         value={{
-          ...this.state,
           handleDetail: this.handleDetail,
           addToCart: this.addToCart,
           openModal: this.openModal,
@@ -185,7 +185,16 @@ class ProdutoProvider extends Component {
           increment: this.increment,
           decrement: this.decrement,
           removeItem: this.removeItem,
-          clearCart: this.clearCart
+          clearCart: this.clearCart,
+
+          produtos: this.state.produtos,
+          cart: this.state.cart,
+          detailProduto: this.state.detailProduto,
+          modalOpen: this.state.modalOpen,
+          modalProduto: this.state.modalProduto,
+          cartSubTotal: this.state.cartSubTotal,
+          cartTax: this.state.cartTax,
+          cartTotal: this.state.cartTotal,
         }}
       >
         {this.props.children}
