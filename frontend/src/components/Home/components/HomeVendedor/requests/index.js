@@ -15,6 +15,21 @@ export function salvarProduto(dados) {
     return pessoa;
 }
 
+export function editarProduto(dados) {
+
+    const produto = { ...dados, valor: Number(dados.valor) };
+
+    const pessoa = api.put(`/editarproduto/${dados.idproduto}`, produto)
+        .then(resp => {
+            return resp.data;
+        })
+        .catch(err => {
+            return err.response.data
+        });
+
+    return pessoa;
+}
+
 export function buscarProdutosVendedor() {
     const idpessoa = localStorage.getItem('idpessoa');
 

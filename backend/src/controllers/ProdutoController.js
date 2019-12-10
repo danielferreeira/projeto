@@ -30,6 +30,17 @@ class ProdutoController {
 
     }
 
+    async editarProduto(req, res) {
+
+        const produto = await Produto.update({ ...req.body }, { where: { idproduto: req.params.idproduto } });
+
+        if (!produto) {
+            return res.status(400).send({ error: 'Ocorreu um erro salvar o registro.' })
+        } else {
+            return res.status(200).send(produto);
+        }
+    }
+
     async criarProduto(req, res) {
         const dados = req.body;
 

@@ -1,12 +1,34 @@
 import React, { Component } from "react";
 import { ButtonContainer } from "../../../Button";
 import { Dialog } from '@material-ui/core';
+import ProdutoEditModal from "./ProdutoEditModal";
+import { withRouter } from 'react-router-dom';
 
-export default class ProdutoDetalhes extends Component {
+class ProdutoDetalhes extends Component {
+
+    state = {
+        modalOpen: false,
+        produto: null
+    }
+
+    handleEditProduct = (produto) => {
+        this.setState({ modalOpen: !this.state.modalOpen, produto })
+    }
     render() {
+        console.log(this.props)
         const { produto, open, handleDetail, vendedorNome } = this.props;
         return (
             <React.Fragment>
+                <ProdutoEditModal
+                    produto={this.state.produto}
+                    handleClose={() => {
+                        this.handleEditProduct()
+                        handleDetail();
+                        this.props.history.push('/')
+                        this.props.history.push('/home')
+                    }}
+                    open={this.state.modalOpen}
+                />
                 {produto !== null &&
                     <Dialog
                         open={open}
@@ -47,6 +69,11 @@ export default class ProdutoDetalhes extends Component {
                                         >
                                             Voltar para os produtos
                                         </ButtonContainer>
+                                        <ButtonContainer
+                                            onClick={() => this.handleEditProduct(produto)}
+                                        >
+                                            Editar produto
+                                        </ButtonContainer>
                                         {/* <ButtonContainer
                                             cart
                                             disabled={produto.inCart ? true : false}
@@ -68,3 +95,4 @@ export default class ProdutoDetalhes extends Component {
     }
 }
 
+export default withRouter(ProdutoDetalhes);

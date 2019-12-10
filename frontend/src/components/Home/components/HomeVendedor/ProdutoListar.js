@@ -11,6 +11,10 @@ export default class ProdutoListar extends Component {
   }
 
   async componentDidMount() {
+    await this.buscarProdutos()
+  }
+
+  async buscarProdutos() {
     const produtos = await buscarProdutosVendedor();
 
     this.setState({ produtos })
