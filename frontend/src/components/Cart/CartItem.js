@@ -8,7 +8,7 @@ export default class CartItem extends Component {
       <div className="row my-1 text-capitalize text-center">
         <div className="col-10 mx-auto col-lg-2">
           <img
-            src={item.imgURL}
+            src={item.imagem || "https://www.lucastavares.net/wp/wp-content/themes/ctheme/assets/img/img-default.jpg"}
             style={{ width: "5rem", heigth: "5rem" }}
             className="img-fluid"
             alt=""
@@ -19,7 +19,7 @@ export default class CartItem extends Component {
         </div>
         <div className="col-10 mx-auto col-lg-2 ">
           <strong>
-            <span className="d-lg-none">Preço :</span> R${item.price}
+            <span className="d-lg-none">Preço :</span> R${item.valor}
           </strong>
         </div>
         <div className="col-10 mx-auto col-lg-2 my-2 my-lg-0 ">
@@ -28,7 +28,7 @@ export default class CartItem extends Component {
               <span
                 className="btn btn-black mx-1"
                 onClick={() => {
-                  return decrement(item.id);
+                  return decrement(item.idproduto);
                 }}
               >
                 -
@@ -37,7 +37,7 @@ export default class CartItem extends Component {
               <span
                 className="btn btn-black mx-1"
                 onClick={() => {
-                  return increment(item.id);
+                  return increment(item.idproduto);
                 }}
               >
                 +
@@ -46,7 +46,7 @@ export default class CartItem extends Component {
           </div>
         </div>
         <div className="col-10 mx-auto col-lg-2 ">
-          <div className=" cart-icon" onClick={() => removeItem(item.id)}>
+          <div className=" cart-icon" onClick={() => removeItem(item.idproduto)}>
             <i className="fas fa-trash" />
           </div>
         </div>

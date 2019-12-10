@@ -8,7 +8,7 @@ export default class CartList extends Component {
     return (
       <div className="container-fluid">
         {cart.map(item => (
-          <CartItem key={item.id} item={item} value={value} />
+          <CartItem key={item.idproduto} item={item} value={value} />
         ))}
       </div>
     );

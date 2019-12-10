@@ -24,17 +24,8 @@ class ProdutoProvider extends Component {
     }
   }
 
-  setProdutos = async () => {
-    let produtos = [];
-
-    produtos && produtos.data.forEach(item => {
-      const singleItem = { ...item };
-      produtos = [...produtos, singleItem];
-    });
-
-    this.setState(() => {
-      return { produtos };
-    }, this.checkCartItems);
+  setProdutos = () => {
+    this.setState({ cart: [] })
   };
 
   getItem = idproduto => {
@@ -53,8 +44,8 @@ class ProdutoProvider extends Component {
     const produto = tempProdutos[index];
     produto.inCart = true;
     produto.count = 1;
-    const price = produto.price;
-    produto.total = price;
+    const valor = produto.valor;
+    produto.total = valor;
 
     this.setState(() => {
       return {
@@ -75,83 +66,80 @@ class ProdutoProvider extends Component {
       return { modalOpen: false };
     });
   };
-  increment = id => {
+  increment = idproduto => {
     let tempCart = [...this.state.cart];
     const selectedProduto = tempCart.find(item => {
-      return item.id === id;
+      return item.idproduto === idproduto;
     });
     const index = tempCart.indexOf(selectedProduto);
     const produto = tempCart[index];
     produto.count = produto.count + 1;
-    produto.total = produto.count * produto.price;
+    produto.total = produto.count * produto.valor;
     this.setState(() => {
       return {
         cart: [...tempCart]
       };
     }, this.addTotals);
   };
-  decrement = id => {
+  decrement = idproduto => {
     let tempCart = [...this.state.cart];
     const selectedProduto = tempCart.find(item => {
-      return item.id === id;
+      return item.idproduto === idproduto;
     });
     const index = tempCart.indexOf(selectedProduto);
     const produto = tempCart[index];
-    produto.count = produto.count - 1;
+    produto.count = produto.count === 0 ? produto.count : produto.count - 1;
     if (produto.count === 0) {
-      this.removeItem(id);
+      this.removeItem(idproduto);
     } else {
-      produto.total = produto.count * produto.price;
+      produto.total = produto.count * produto.valor;
       this.setState(() => {
         return { cart: [...tempCart] };
       }, this.addTotals);
     }
   };
   getTotals = () => {
-    // const subTotal = this.state.cart
-    //   .map(item => item.total)
-    //   .reduce((acc, curr) => {
-    //     acc = acc + curr;
-    //     return acc;
-    //   }, 0);
-    let subTotal = 0;
-    this.state.cart.map(item => (subTotal += item.total));
-    const tempTax = subTotal * 0.1;
-    const tax = parseFloat(tempTax.toFixed(2));
-    const total = subTotal + tax;
+    const subTotal = this.state.cart
+      .map(item => item.total)
+      .reduce((acc, curr) => {
+        acc = acc + curr;
+        return acc;
+      }, 0);
+
     return {
-      subTotal,
-      tax,
-      total
+      subTotal: parseFloat(subTotal).toFixed(2),
+      tax: (parseFloat(subTotal) * 0.2).toFixed(2),
+      total: parseFloat(subTotal).toFixed(2)
     };
   };
   addTotals = () => {
     const totals = this.getTotals();
-    this.setState(
-      () => {
-        return {
-          cartSubTotal: totals.subTotal,
-          cartTax: totals.tax,
-          cartTotal: totals.total
-        };
-      },
+
+    this.setState(() => {
+      return {
+        cartSubTotal: totals.subTotal,
+        cartTax: totals.tax,
+        cartTotal: totals.total
+      };
+    },
       () => {
         // console.log(this.state);
       }
     );
   };
-  removeItem = id => {
+
+  removeItem = idproduto => {
     let tempProdutos = [...this.state.produtos];
     let tempCart = [...this.state.cart];
 
-    const index = tempProdutos.indexOf(this.getItem(id));
+    const index = tempProdutos.indexOf(this.getItem(idproduto));
     let removedProduto = tempProdutos[index];
     removedProduto.inCart = false;
     removedProduto.count = 0;
     removedProduto.total = 0;
 
     tempCart = tempCart.filter(item => {
-      return item.id !== id;
+      return item.idproduto !== idproduto;
     });
 
     this.setState(() => {
