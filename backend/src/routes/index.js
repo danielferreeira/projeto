@@ -6,11 +6,13 @@ const ProdutoController = require('../controllers/ProdutoController');
 const PessoaController = require('../controllers/PessoaController');
 
 routes.get('/produtos', ProdutoController.buscarProdutos);
-routes.get('/produtosvendedor', ProdutoController.buscarProdutosVendedor);
+routes.get('/produtosvendedor/:idpessoa', ProdutoController.buscarProdutosVendedor);
 routes.post('/criarproduto', ProdutoController.criarProduto);
 
 routes.get('/pessoas', PessoaController.buscarPessoas);
+routes.get('/pessoa/:idpessoa', PessoaController.buscarPessoaPeloId);
 routes.post('/criarpessoa', PessoaController.criarPessoa);
+routes.put('/atualizarpessoa', PessoaController.atualizarPessoa);
 
 routes.post('/login', PessoaController.validarLoginPessoa);
 

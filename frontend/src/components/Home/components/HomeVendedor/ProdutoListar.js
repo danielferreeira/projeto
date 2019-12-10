@@ -18,7 +18,6 @@ export default class ProdutoListar extends Component {
   }
 
   render() {
-    //var VENDEDORES = require('./vendedores.json');
     return (
       <React.Fragment>
         <ProdutoWrapper className="py-5">

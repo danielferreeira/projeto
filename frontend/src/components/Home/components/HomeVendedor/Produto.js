@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { ProdutoConsumer } from "../../../../context";
 import ProdutoDetalhes from "./ProdutoDetalhes";
 
@@ -10,38 +9,45 @@ export default class Produto extends Component {
     produtoOpen: null,
   }
 
-  handleDetail = (_Value) => {
-    this.setState({ "produtoOpen": _Value });
+  handleDetail = produto => {
+    this.setState({ "produtoOpen": !this.state.produtoOpen });
   }
 
   render() {
     const { produto } = this.props;
 
     return (
-      <ProdutoWrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3">
-        <div className="card">
-          <ProdutoConsumer>
-            {value => {
-              return (
-                <div
-                  className="img-container p-5"
-                  onClick={() => this.handleDetail(produto)}
-                >
-                  <img src={produto.imagem || "https://www.lucastavares.net/wp/wp-content/themes/ctheme/assets/img/img-default.jpg"} alt="" className="card-img-top" />
-
-                </div>
-              );
-            }}
-          </ProdutoConsumer>
-          <div className="card-footer d-flex justify-content-between">
-            <p className="align-self-center mb-0">{produto.nome}</p>
-            <h5 className="text-blue font-italic mb-0">
-              <span className="mr-1">R$</span>
-              {produto.valor}
-            </h5>
+      <>
+        <ProdutoWrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3">
+          <div className="card">
+            <ProdutoConsumer>
+              {value => {
+                return (
+                  <div
+                    className="img-container p-5"
+                    onClick={() => this.handleDetail(produto)}
+                  >
+                    <img src={produto.imagem || "https://www.lucastavares.net/wp/wp-content/themes/ctheme/assets/img/img-default.jpg"} alt="" className="card-img-top" />
+                  </div>
+                );
+              }}
+            </ProdutoConsumer>
+            <div className="card-footer d-flex justify-content-between">
+              <p className="align-self-center mb-0">{produto.nome}</p>
+              <h5 className="text-blue font-italic mb-0">
+                <span className="mr-1">R$</span>
+                {produto.valor}
+              </h5>
+            </div>
           </div>
-        </div>
-      </ProdutoWrapper>
+        </ProdutoWrapper>
+        <ProdutoDetalhes
+          produto={produto}
+          open={this.state.produtoOpen}
+          handleDetail={this.handleDetail}
+          vendedorNome={localStorage.getItem('nome')}
+        />
+      </>
     );
   }
 }

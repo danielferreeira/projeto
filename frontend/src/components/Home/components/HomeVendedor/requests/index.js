@@ -16,7 +16,37 @@ export function salvarProduto(dados) {
 }
 
 export function buscarProdutosVendedor() {
-    const pessoa = api.get('/produtosvendedor')
+    const idpessoa = localStorage.getItem('idpessoa');
+
+    const pessoa = api.get(`/produtosvendedor/${idpessoa}`)
+        .then(resp => {
+            return resp.data;
+        })
+        .catch(err => {
+            return err.response.data
+        });
+
+    return pessoa;
+}
+
+export function carregarInformacoesUsuarioLogado() {
+    const idpessoa = localStorage.getItem('idpessoa');
+
+    const pessoa = api.get(`/pessoa/${idpessoa}`)
+        .then(resp => {
+            return resp.data;
+        })
+        .catch(err => {
+            return err.response.data
+        });
+
+    return pessoa;
+}
+
+
+export function atualizarDadosUsuario(dados) {
+
+    const pessoa = api.put('/atualizarpessoa', dados)
         .then(resp => {
             return resp.data;
         })

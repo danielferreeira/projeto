@@ -9,9 +9,31 @@ class PessoaController {
         return res.status(200).send(pessoas);
     }
 
+    async buscarPessoaPeloId(req, res) {
+
+        const pessoa = await Pessoa.findOne({ where: { idpessoa: req.params.idpessoa } });
+
+        if (!pessoa) {
+            return res.status(400).send({ error: 'Ocorreu um erro salvar o registro.' })
+        } else {
+            return res.status(200).send(pessoa);
+        }
+    }
+
     async criarPessoa(req, res) {
 
         const pessoa = await Pessoa.create({ ...req.body });
+
+        if (!pessoa) {
+            return res.status(400).send({ error: 'Ocorreu um erro salvar o registro.' })
+        } else {
+            return res.status(200).send(pessoa);
+        }
+    }
+
+    async atualizarPessoa(req, res) {
+
+        const pessoa = await Pessoa.update({ ...req.body }, { where: { idpessoa: req.body.idpessoa } });
 
         if (!pessoa) {
             return res.status(400).send({ error: 'Ocorreu um erro salvar o registro.' })
