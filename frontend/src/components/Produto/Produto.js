@@ -1,22 +1,21 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { ProdutoConsumer } from "../../context";
 import ProdutoDetails from "./ProdutoDetails";
 
 export default class Produto extends Component {
 
   state = {
-    produtoOpen : null,
+    produtoOpen: null,
   }
 
   handleDetail = (_Value) => {
-    this.setState({"produtoOpen" : _Value});
+    this.setState({ "produtoOpen": _Value });
   }
 
   render() {
-    const {produto, vendedor} = this.props;
-    const {produtoOpen} = this.state;
+    const { produto, vendedor, other } = this.props;
+    const { produtoOpen } = this.state;
     return (
       <ProdutoWrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3">
         <ProdutoDetails
@@ -24,6 +23,7 @@ export default class Produto extends Component {
           produto={produtoOpen}
           vendedor={vendedor}
           handleDetail={this.handleDetail}
+          other={other}
         />
         <div className="card">
           <ProdutoConsumer>
@@ -33,7 +33,7 @@ export default class Produto extends Component {
                   className="img-container p-5"
                   onClick={() => this.handleDetail(produto)}
                 >
-                  <img src={produto.imgURL} alt="" className="card-img-top" />
+                  <img src={produto.imagem || "https://www.lucastavares.net/wp/wp-content/themes/ctheme/assets/img/img-default.jpg"} alt="" className="card-img-top" />
                   <button
                     className="cart-btn"
                     disabled={produto.inCart ? true : false}
@@ -47,8 +47,8 @@ export default class Produto extends Component {
                         No carrinho
                       </p>
                     ) : (
-                      <i className="fas fa-cart-plus" />
-                    )}
+                        <i className="fas fa-cart-plus" />
+                      )}
                   </button>
                 </div>
               );

@@ -3,12 +3,10 @@ import Produto from "./Produto";
 import styled from "styled-components";
 import { ProdutoConsumer } from "../../context";
 import _ from "lodash";
-import { buscarProdutos } from "./request";
 
 export default class ProdutoList extends Component {
 
   render() {
-    var VENDEDORES = require('./vendedores.json');
     return (
       <React.Fragment>
         <ProdutoWrapper className="py-5">
@@ -16,9 +14,8 @@ export default class ProdutoList extends Component {
             <div className="row">
               <ProdutoConsumer>
                 {value => {
-                  console.log(value)
                   return value.produtos.map(produto => {
-                    return <Produto key={produto.idproduto} produto={produto} vendedor={produto.Pessoa} />;
+                    return <Produto other={value} key={produto.idproduto} produto={produto} vendedor={produto.Pessoa} />;
                   });
                 }}
               </ProdutoConsumer>

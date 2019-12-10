@@ -27,8 +27,6 @@ class ProdutoProvider extends Component {
   setProdutos = async () => {
     let produtos = [];
 
-    const produtosGet = await axios.get('http://localhost:3333/produtos');
-
     produtos && produtos.data.forEach(item => {
       const singleItem = { ...item };
       produtos = [...produtos, singleItem];
@@ -39,8 +37,8 @@ class ProdutoProvider extends Component {
     }, this.checkCartItems);
   };
 
-  getItem = id => {
-    const produto = this.state.produtos.find(item => item.id === id);
+  getItem = idproduto => {
+    const produto = this.state.produtos.find(item => item.idproduto === idproduto);
     return produto;
   };
   handleDetail = id => {
