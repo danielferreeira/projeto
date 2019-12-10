@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PayPalButton from "./PayPalButton";
 import { Link } from "react-router-dom";
 
 export default class CartTotals extends Component {
@@ -12,8 +11,6 @@ export default class CartTotals extends Component {
       clearCart
     } = this.props.value;
 
-    const { history } = this.props;
-console.log(this.props)
     const emptyCart = cart.length === 0 ? true : false;
     return (
       <React.Fragment>

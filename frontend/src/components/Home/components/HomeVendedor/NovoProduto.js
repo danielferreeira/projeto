@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./HomeVendedor.css";
 import { TextField, Button, Paper } from '@material-ui/core';
-import _ from 'lodash';
 import { salvarProduto } from './requests';
 import { withSnackbar } from 'notistack';
 

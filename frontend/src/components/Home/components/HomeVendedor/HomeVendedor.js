@@ -23,26 +23,26 @@ export default class HomeVendedor extends Component {
   render() {
 
     var component = '';
-    {
-      switch (this.state.content) {
-        case "Lista de produtos":
-          component = <ProdutoListar />
-          break;
-        case "Cadastrar produto":
-          component = <NovoProduto />
-          break;
-        case "Editar perfil":
-          component = <Dados />
-          break;
-        case "Relatórios":
-          component = <Relatorio />
-          break;
 
-        default:
-          component = <div></div>
-          break;
-      }
+    switch (this.state.content) {
+      case "Lista de produtos":
+        component = <ProdutoListar />
+        break;
+      case "Cadastrar produto":
+        component = <NovoProduto />
+        break;
+      case "Editar perfil":
+        component = <Dados />
+        break;
+      case "Relatórios":
+        component = <Relatorio />
+        break;
+
+      default:
+        component = <div></div>
+        break;
     }
+
 
     return (
       <React.Fragment>

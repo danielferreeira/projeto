@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./HomeVendedor.css";
 import { TextField, Button, Paper } from '@material-ui/core';
-import _ from 'lodash';
 import { atualizarDadosUsuario, carregarInformacoesUsuarioLogado } from "./requests";
 
 export default class HomeVendedor extends Component {

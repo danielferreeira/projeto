@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { storeProdutos, detailProduto } from "./data";
-import axios from 'axios';
+import { detailProduto } from "./data";
 import { buscarProdutos } from "./components/Produto/request";
 const ProdutoContext = React.createContext();
 

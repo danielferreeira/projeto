@@ -2,35 +2,35 @@ import React, { Component } from "react";
 import "./HomeUsuario.css";
 import Dados from './Dados';
 import Relatorio from './Relatorio';
-import {Paper, MenuItem, MenuList, Typography, ListItemIcon } from '@material-ui/core';
+import { Paper, MenuItem, MenuList, Typography, ListItemIcon } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/Edit';
 import Assignment from '@material-ui/icons/Assignment';
 
 export default class HomeUsuario extends Component {
 
   state = {
-    content    : "Cadastrar produto",
+    content: "Cadastrar produto",
   }
 
   handlesidebar = (event) => {
-    this.setState({"content" : event.target.textContent});
+    this.setState({ "content": event.target.textContent });
   }
 
   render() {
-    
+
     var component = '';
-    {switch (this.state.content) {
-        case "Editar perfil":
-          component = <Dados/>
+    switch (this.state.content) {
+      case "Editar perfil":
+        component = <Dados />
         break;
-        case "Relatórios":
-          component = <Relatorio/>
+      case "Relatórios":
+        component = <Relatorio />
         break;
-    
+
       default:
-          component = <div></div>
+        component = <div></div>
         break;
-    }}
+    }
 
     return (
       <React.Fragment>
@@ -41,7 +41,7 @@ export default class HomeUsuario extends Component {
           >
             <MenuList>
               <MenuItem
-                onClick={this.handlesidebar} 
+                onClick={this.handlesidebar}
               >
                 <ListItemIcon>
                   <EditIcon fontSize="small" />
@@ -49,7 +49,7 @@ export default class HomeUsuario extends Component {
                 <Typography variant="inherit">Editar perfil</Typography>
               </MenuItem>
               <MenuItem
-                onClick={this.handlesidebar} 
+                onClick={this.handlesidebar}
               >
                 <ListItemIcon>
                   <Assignment fontSize="small" />

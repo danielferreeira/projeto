@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "./HomeUsuario.css";
 import { Button, Paper } from '@material-ui/core';
-import _ from 'lodash';
 
 export default class HomeUsuario extends Component {
 

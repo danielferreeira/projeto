@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import "./HomeUsuario.css";
-import {TextField, Button, Paper, MenuItem, MenuList, Typography, ListItemIcon } from '@material-ui/core';
-import _ from 'lodash';
-import UploadIcon from '@material-ui/icons/CloudUpload';
-import EditIcon from '@material-ui/icons/Edit';
+import {TextField, Button, Paper } from '@material-ui/core';
 
 export default class HomeVendedor extends Component {
 
