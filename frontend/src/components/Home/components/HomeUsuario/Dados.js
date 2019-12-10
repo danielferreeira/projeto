@@ -5,9 +5,9 @@ import {TextField, Button, Paper } from '@material-ui/core';
 export default class HomeVendedor extends Component {
 
   state = {
-    nome            : 'Daniel',
-    documento       : '011.115.889-08',
-    email           : 'danielferreiramh@gmail.com',
+    nome            : '',
+    documento       : '',
+    email           : '',
   }
 
   handleChange = (event) => {

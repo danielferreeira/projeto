@@ -107,7 +107,8 @@ class ProdutoProvider extends Component {
 
     return {
       subTotal: parseFloat(subTotal).toFixed(2),
-      tax: (parseFloat(subTotal) * 0.2).toFixed(2),
+      // tax: (parseFloat(subTotal) * 0.2).toFixed(2),
+      tax: 0,
       total: parseFloat(subTotal).toFixed(2)
     };
   };
