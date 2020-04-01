@@ -9,7 +9,7 @@ import 'moment/min/locales.min';
 import numeral from 'numeral';
 import 'numeral/locales';
 import Typography from '@material-ui/core/Typography';
-import { CardHeader, Avatar } from '@material-ui/core';
+import { CardHeader, Avatar, Grid } from '@material-ui/core';
 import ProdutoDetalhes from './ProdutoDetalhes';
 
 const styles = theme => ({
@@ -20,9 +20,28 @@ const styles = theme => ({
   media: {
     height: 140,
   },
+  avatarMedia: {
+    height: 140,
+    width: 140
+  }
 });
 
-numeral.locale('pt-br');
+numeral.register('locale', 'BRASIL', {
+  delimiters: {
+      thousands: ',',
+      decimal: '.'
+  },
+  abbreviations: {
+      thousand: 'K',
+      million: 'MI',
+      billion: 'BI',
+      trillion: 'TRI'
+  },
+  currency: {
+      symbol: 'R$'
+  }
+});
+numeral.locale('BRASIL');
 class Produto extends Component {
   state = {
     detalhesOpen: false,
@@ -46,11 +65,16 @@ class Produto extends Component {
               title={produto.nome}
               subheader={moment(produto.createdAt).locale('pt-br').format("dddd, MMMM Do YYYY")}
             />
-            <CardMedia
-              className={classes.media}
-              image={produto.imagem || "https://www.lucastavares.net/wp/wp-content/themes/ctheme/assets/img/img-default.jpg"}
-              title={produto.nome}
-            />
+            <CardMedia className={classes.media}>
+              <Grid
+                container
+                direction="row"
+                justify="center"
+                alignItems="center"
+              >
+                <Avatar aria-label="recipe" className={classes.avatarMedia} src={produto.imagem || "https://www.lucastavares.net/wp/wp-content/themes/ctheme/assets/img/img-default.jpg"} />
+              </Grid>
+            </CardMedia>
             <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
                 {numeral(produto.valor).format('$0,0.00')}
