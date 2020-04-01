@@ -8,6 +8,7 @@ const PessoaController = require('../controllers/PessoaController');
 routes.get('/produtos', ProdutoController.buscarProdutos);
 routes.put('/editarproduto/:idproduto', ProdutoController.editarProduto);
 routes.get('/produtosvendedor/:idpessoa', ProdutoController.buscarProdutosVendedor);
+routes.get('/produto/:idproduto', ProdutoController.buscarProduto);
 routes.post('/criarproduto', ProdutoController.criarProduto);
 
 routes.get('/pessoas', PessoaController.buscarPessoas);

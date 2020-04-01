@@ -11,7 +11,16 @@ class ProdutoController {
         } else {
             return res.status(200).send(produtos);
         }
+    }
 
+    async buscarProduto(req, res) {
+        const produto = await Produto.findOne({ where: { idproduto: req.params.idproduto } });
+
+        if (!produto) {
+            return res.status(400).send({ error: 'Ocorreu um erro ao buscar os produtos.' });
+        } else {
+            return res.status(200).send(produto);
+        }
     }
 
     async buscarProdutos(req, res) {
