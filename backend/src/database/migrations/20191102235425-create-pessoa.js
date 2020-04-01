@@ -12,7 +12,6 @@ module.exports = {
         type: Sequelize.STRING
       },
       artesao: Sequelize.BOOLEAN,
-      cpfcnpj: Sequelize.STRING,
       documento: {
         type: Sequelize.STRING
       },

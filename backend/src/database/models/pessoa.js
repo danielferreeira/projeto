@@ -7,7 +7,6 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
     },
     nome: DataTypes.STRING,
-    cpfcnpj: DataTypes.STRING,
     artesao: DataTypes.BOOLEAN,
     documento: DataTypes.STRING,
     email: {

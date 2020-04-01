@@ -14,6 +14,6 @@ app.use(cors());
 
 app.use(require('./src/routes'));
 
-app.listen(PORT, () => {
+app.listen(PORT || 3333, () => {
     console.log('Server start in port 3333');
-})
+});

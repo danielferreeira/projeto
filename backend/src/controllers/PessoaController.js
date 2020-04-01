@@ -50,7 +50,7 @@ class PessoaController {
                 email,
                 senha
             }
-        })
+        });
 
         if (!pessoa) {
             return res.status(400).send({ error: 'Usuário ou senha inválido.' })
