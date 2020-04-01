@@ -23,10 +23,6 @@ class ProdutoProvider extends Component {
     }
   }
 
-  setProdutos = () => {
-    this.setState({ cart: [] })
-  };
-
   getItem = idproduto => {
     const produto = this.state.produtos.find(item => item.idproduto === idproduto);
     return produto;
@@ -37,6 +33,7 @@ class ProdutoProvider extends Component {
       return { detailProduto: produto };
     });
   };
+
   addToCart = id => {
     let tempProdutos = [...this.state.produtos];
     const index = tempProdutos.indexOf(this.getItem(id));
@@ -54,17 +51,20 @@ class ProdutoProvider extends Component {
       };
     }, this.addTotals);
   };
+
   openModal = id => {
     const produto = this.getItem(id);
     this.setState(() => {
       return { modalProduto: produto, modalOpen: true };
     });
   };
+
   closeModal = () => {
     this.setState(() => {
       return { modalOpen: false };
     });
   };
+
   increment = idproduto => {
     let tempCart = [...this.state.cart];
     const selectedProduto = tempCart.find(item => {
@@ -80,6 +80,7 @@ class ProdutoProvider extends Component {
       };
     }, this.addTotals);
   };
+
   decrement = idproduto => {
     let tempCart = [...this.state.cart];
     const selectedProduto = tempCart.find(item => {
@@ -97,6 +98,7 @@ class ProdutoProvider extends Component {
       }, this.addTotals);
     }
   };
+
   getTotals = () => {
     const subTotal = this.state.cart
       .map(item => item.total)
@@ -112,20 +114,15 @@ class ProdutoProvider extends Component {
       total: parseFloat(subTotal).toFixed(2)
     };
   };
+
   addTotals = () => {
     const totals = this.getTotals();
 
-    this.setState(() => {
-      return {
-        cartSubTotal: totals.subTotal,
-        cartTax: totals.tax,
-        cartTotal: totals.total
-      };
-    },
-      () => {
-        // console.log(this.state);
-      }
-    );
+    this.setState({
+      cartSubTotal: totals.subTotal,
+      cartTax: totals.tax,
+      cartTotal: totals.total
+    });
   };
 
   removeItem = idproduto => {
@@ -149,17 +146,13 @@ class ProdutoProvider extends Component {
       };
     }, this.addTotals);
   };
+
   clearCart = () => {
-    this.setState(
-      () => {
-        return { cart: [] };
-      },
-      () => {
-        this.setProdutos();
-        this.addTotals();
-      }
-    );
+    this.setState({ cart: [] });
+
+    this.state.produtos && this.state.produtos.map(produto => produto.inCart = false);
   };
+
   render() {
     return (
       <ProdutoContext.Provider

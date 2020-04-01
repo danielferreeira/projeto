@@ -27,7 +27,7 @@ export default class ProdutoListar extends Component {
           <div className="container">
             <div className="row">
               <ProdutoConsumer>
-                {value => {
+                {() => {
                   return this.state.produtos.map(produto => {
                     return <Produto key={produto.idproduto} produto={produto} />;
                   });

@@ -13,6 +13,7 @@ export default class CartTotals extends Component {
     } = this.props.value;
 
     const emptyCart = cart.length === 0 ? true : false;
+    
     return (
       <React.Fragment>
         {!emptyCart && (
