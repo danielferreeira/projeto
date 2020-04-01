@@ -71,3 +71,14 @@ export function atualizarDadosUsuario(dados) {
 
     return pessoa;
 }
+
+
+export function buscarProduto(idproduto) {
+    return api.get(`/produto/${idproduto}`)
+        .then(resp => {
+            return resp.data;
+        })
+        .catch(err => {
+            return err.response.data
+        });
+}

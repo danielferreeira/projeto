@@ -53,7 +53,7 @@ class Produto extends Component {
 
   render() {
     const { classes, produto } = this.props;
-    console.log(produto)
+
     return (
       <>
         <Card className={classes.root} onClick={this.handleDetail}>

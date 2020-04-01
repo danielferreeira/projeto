@@ -15,11 +15,10 @@ class ProdutoDetalhes extends Component {
         this.setState({ modalOpen: !this.state.modalOpen, produto })
     }
     render() {
-        console.log(this.props)
         const { produto, open, handleDetail, vendedorNome } = this.props;
         return (
             <React.Fragment>
-                <ProdutoEditModal
+                {this.state.modalOpen ? <ProdutoEditModal
                     produto={this.state.produto}
                     handleClose={() => {
                         this.handleEditProduct()
@@ -28,7 +27,8 @@ class ProdutoDetalhes extends Component {
                         this.props.history.push('/home')
                     }}
                     open={this.state.modalOpen}
-                />
+                /> : null}
+
                 {produto !== null &&
                     <Dialog
                         open={open}

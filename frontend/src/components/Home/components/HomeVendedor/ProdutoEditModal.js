@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Dialog, Button, TextField, Paper } from '@material-ui/core';
-import { editarProduto } from "./requests";
+import { editarProduto, buscarProduto } from "./requests";
+import { mountDataImage } from "../../../../commom/functions";
 
 export default class ProdutoEditModal extends Component {
 
@@ -13,14 +14,38 @@ export default class ProdutoEditModal extends Component {
         idproduto: ''
     }
 
+    componentDidMount() {
+        const idproduto = this.props.produto && this.props.produto.idproduto;
+
+        buscarProduto(idproduto)
+            .then(resp => {
+                this.setState({ ...resp })
+            })
+
+    }
+
+    fileSelectedHandler = event => {
+
+        const file = event.target.files[0];
+    
+        var atualizarImagem = data => this.setState({ imagem: data });
+    
+        var reader = new FileReader();
+        reader.readAsArrayBuffer(new Blob([event.target.files[0]]));
+    
+        reader.onload = function () {
+          var arrayBuffer = reader.result
+          var bytes = new Uint8Array(arrayBuffer);
+    
+          atualizarImagem(mountDataImage(file.type, bytes));
+        }
+    
+      }
+
     handleChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
     }
 
-    fileSelectedHandler = event => {
-        //const file = event.target.files[0];
-        
-    }
 
     editarProduto = async () => {
         const produto = await editarProduto({
@@ -90,6 +115,8 @@ export default class ProdutoEditModal extends Component {
                                     onChange={this.handleChange}
                                 />
                             </div>
+
+                            <img src={this.state.imagem || "https://www.lucastavares.net/wp/wp-content/themes/ctheme/assets/img/img-default.jpg"} width='150px' />
 
                             <div className="App">
                                 <input type="file" className="flex mb-3 mr-1" onChange={this.fileSelectedHandler} />
