@@ -60,7 +60,7 @@ class ProdutoDetalhes extends Component {
                                     </h4>
                                     <p className="font-weight-bold mt-3 mb-0">
                                         Informações sobre o produto :
-                                </p>
+                                    </p>
                                     <p className="text-muted lead">{produto.descricao}</p>
                                     {/* buttons */}
                                     <div>
