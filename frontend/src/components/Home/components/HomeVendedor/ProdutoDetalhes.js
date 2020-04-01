@@ -58,7 +58,7 @@ class ProdutoDetalhes extends Component {
                                             {produto.valor}
                                         </strong>
                                     </h4>
-                                    <p className="text-capitalize font-weight-bold mt-3 mb-0">
+                                    <p className="font-weight-bold mt-3 mb-0">
                                         Informações sobre o produto :
                                 </p>
                                     <p className="text-muted lead">{produto.descricao}</p>

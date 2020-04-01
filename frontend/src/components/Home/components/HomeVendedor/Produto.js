@@ -1,49 +1,69 @@
-import React, { Component } from "react";
-import styled from "styled-components";
-import { ProdutoConsumer } from "../../../../context";
-import ProdutoDetalhes from "./ProdutoDetalhes";
+import React, { Component } from 'react';
+import { withStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import moment from 'moment';
+import 'moment/min/locales.min';
+import numeral from 'numeral';
+import 'numeral/locales';
+import Typography from '@material-ui/core/Typography';
+import { CardHeader, Avatar } from '@material-ui/core';
+import ProdutoDetalhes from './ProdutoDetalhes';
 
-export default class Produto extends Component {
+const styles = theme => ({
+  root: {
+    width: 345,
+    margin: theme.spacing(1)
+  },
+  media: {
+    height: 140,
+  },
+});
 
+numeral.locale('pt-br');
+class Produto extends Component {
   state = {
-    produtoOpen: null,
+    detalhesOpen: false,
   }
 
-  handleDetail = produto => {
-    this.setState({ "produtoOpen": !this.state.produtoOpen });
+  handleDetail = () => {
+    this.setState({ detalhesOpen: !this.state.detalhesOpen });
   }
 
   render() {
-    const { produto } = this.props;
-
+    const { classes, produto } = this.props;
+    console.log(produto)
     return (
       <>
-        <ProdutoWrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3">
-          <div className="card">
-            <ProdutoConsumer>
-              {value => {
-                return (
-                  <div
-                    className="img-container p-5"
-                    onClick={() => this.handleDetail(produto)}
-                  >
-                    <img src={produto.imagem || "https://www.lucastavares.net/wp/wp-content/themes/ctheme/assets/img/img-default.jpg"} alt="" className="card-img-top" />
-                  </div>
-                );
-              }}
-            </ProdutoConsumer>
-            <div className="card-footer d-flex justify-content-between">
-              <p className="align-self-center mb-0">{produto.nome}</p>
-              <h5 className="text-blue font-italic mb-0">
-                <span className="mr-1">R$</span>
-                {produto.valor}
-              </h5>
-            </div>
-          </div>
-        </ProdutoWrapper>
+        <Card className={classes.root} onClick={this.handleDetail}>
+          <CardActionArea>
+            <CardHeader
+              avatar={
+                <Avatar aria-label="recipe" className={classes.avatar} src={produto.imagem || "https://www.lucastavares.net/wp/wp-content/themes/ctheme/assets/img/img-default.jpg"} />
+              }
+              title={produto.nome}
+              subheader={moment(produto.createdAt).locale('pt-br').format("dddd, MMMM Do YYYY")}
+            />
+            <CardMedia
+              className={classes.media}
+              image={produto.imagem || "https://www.lucastavares.net/wp/wp-content/themes/ctheme/assets/img/img-default.jpg"}
+              title={produto.nome}
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="h2">
+                {numeral(produto.valor).format('$0,0.00')}
+              </Typography>
+              <Typography variant="body2" color="textSecondary" component="p">
+                {produto.descricao}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
         <ProdutoDetalhes
           produto={produto}
-          open={this.state.produtoOpen}
+          open={this.state.detalhesOpen}
           handleDetail={this.handleDetail}
           vendedorNome={localStorage.getItem('nome')}
         />
@@ -52,52 +72,4 @@ export default class Produto extends Component {
   }
 }
 
-const ProdutoWrapper = styled.div`
-  .card {
-    border-color: transparent;
-  }
-  .card-footer {
-    background: transparent;
-    border-top: transparent;
-  }
-  &:hover {
-    .card {
-      border: 0.04rem solid rgba(0, 0, 0, 0.2);
-      box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.2);
-    }
-    .card-footer {
-      background: rgba(247, 247, 247);
-    }
-  }
-  .img-container {
-    position: relative;
-    overflow: hidden;
-  }
-  .card-img-top {
-    width: 100px;
-    height: 100px;
-  }
-  .img-container:hover .card-img-top {
-    transform: scale(1.2);
-  }
-  .cart-btn {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    padding: 0.2rem 0.4rem;
-    background: var(--lightBlue);
-    border: none;
-    color: var(--mainWhite);
-    font-size: 1.4rem;
-    border-radius: 0.5rem 0 0 0;
-    transform: translate(100%, 100%);
-    transition: all 1s ease-in-out;
-  }
-  .img-container:hover .cart-btn {
-    transform: translate(0, 0);
-  }
-  .cart-btn:hover {
-    color: var(--mainBlue);
-    cursor: pointer;
-  }
-`;
+export default withStyles(styles)(Produto);
