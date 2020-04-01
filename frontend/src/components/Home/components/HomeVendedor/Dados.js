@@ -8,7 +8,7 @@ export default class HomeVendedor extends Component {
   state = {
     idpessoa: '',
     nome: '',
-    cpfcnpj: '',
+    documento: '',
     email: '',
   }
 
@@ -16,8 +16,8 @@ export default class HomeVendedor extends Component {
     const usuario = await carregarInformacoesUsuarioLogado();
 
     if (usuario) {
-      const { idpessoa, nome, cpfcnpj, email } = usuario;
-      this.setState({ idpessoa, nome, cpfcnpj, email })
+      const { idpessoa, nome, documento, email } = usuario;
+      this.setState({ idpessoa, nome, documento, email })
     }
   }
 
@@ -54,11 +54,11 @@ export default class HomeVendedor extends Component {
           <TextField
             className="mb-3"
             variant="outlined"
-            id="cpfcnpj"
+            id="documento"
             label="CNPJ"
-            name="cpfcnpj"
+            name="documento"
             fullWidth
-            value={this.state.cpfcnpj}
+            value={this.state.documento}
             onChange={this.handleChange}
           />
 

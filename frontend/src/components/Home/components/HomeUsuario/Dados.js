@@ -1,31 +1,41 @@
 import React, { Component } from "react";
 import "./HomeUsuario.css";
-import {TextField, Button, Paper } from '@material-ui/core';
+import { TextField, Button, Paper } from '@material-ui/core';
+import { carregarInformacoesUsuarioLogado, atualizarDadosUsuario } from "./requests";
 
 export default class HomeVendedor extends Component {
 
   state = {
-    nome            : '',
-    documento       : '',
-    email           : '',
+    nome: '',
+    documento: '',
+    email: '',
+  }
+
+  async componentDidMount() {
+    const usuario = await carregarInformacoesUsuarioLogado();
+
+    if (usuario) {
+      const { idpessoa, nome, documento, email } = usuario;
+      this.setState({ idpessoa, nome, documento, email })
+    }
   }
 
   handleChange = (event) => {
-    this.setState({[event.target.name] : event.target.value});
+    this.setState({ [event.target.name]: event.target.value });
   }
 
-  fileSelectedHandler = event => {
-    console.log(event);
+  atualizar = () => {
+    atualizarDadosUsuario(this.state);
   }
-  
+
   render() {
     return (
       <React.Fragment>
         <Paper
-            className="paperhomevendedor"
-            elevation={2}
+          className="paperhomevendedor"
+          elevation={2}
         >
-        <TextField
+          <TextField
             className="mb-3"
             variant="outlined"
             id="nome"
@@ -34,42 +44,42 @@ export default class HomeVendedor extends Component {
             fullWidth
             value={this.state.nome}
             onChange={this.handleChange}
-        />
+          />
           <div className="flex">
             <TextField
-                className="mb-3 mr-4"
-                variant="outlined"
-                id="documento"
-                label="Documento"
-                name="documento"
-                fullWidth
-                style={{width : "20%"}}
-                value={this.state.documento}
-                onChange={this.handleChange}
+              className="mb-3 mr-4"
+              variant="outlined"
+              id="documento"
+              label="Documento"
+              name="documento"
+              fullWidth
+              style={{ width: "20%" }}
+              value={this.state.documento}
+              onChange={this.handleChange}
             />
-    
-            <TextField
-                className="flex mb-3"
-                variant="outlined"
-                id="email"
-                label="Email"
-                name="email"
-                fullWidth
-                style={{width : "75%"}}
-                value={this.state.email}
-                onChange={this.handleChange}
-            />
-        </div>
 
-        <Button 
+            <TextField
+              className="flex mb-3"
+              variant="outlined"
+              id="email"
+              label="Email"
+              name="email"
+              fullWidth
+              style={{ width: "75%" }}
+              value={this.state.email}
+              onChange={this.handleChange}
+            />
+          </div>
+
+          <Button
             variant="contained"
             className="buttonHomeVendedor justify-center"
             color="inherit"
             size="large"
             onClick={() => {
-            this.saveProduto();
+              this.atualizar();
             }}
-        >
+          >
             Salvar
         </Button>
         </Paper>
