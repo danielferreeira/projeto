@@ -3,7 +3,7 @@ import "./HomeVendedor.css";
 import { TextField, Button, Paper } from '@material-ui/core';
 import { salvarProduto } from './requests';
 import { withSnackbar } from 'notistack';
-
+import { mountDataImage } from "../../../../commom/functions";
 
 class HomeVendedor extends Component {
 
@@ -20,7 +20,21 @@ class HomeVendedor extends Component {
   }
 
   fileSelectedHandler = event => {
-    console.log(event);
+
+    const file = event.target.files[0];
+
+    var atualizarImagem = data => this.setState({ imagem: data });
+
+    var reader = new FileReader();
+    reader.readAsArrayBuffer(new Blob([event.target.files[0]]));
+
+    reader.onload = function () {
+      var arrayBuffer = reader.result
+      var bytes = new Uint8Array(arrayBuffer);
+
+      atualizarImagem(mountDataImage(file.type, bytes));
+    }
+
   }
 
   criarProduto = async () => {

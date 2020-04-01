@@ -30,12 +30,11 @@ export default class Login extends Component {
     const { email, senha } = this.state;
 
     const resposta = await fazerLogin(email, senha);
-    console.log(resposta)
+
     if (resposta.error) {
       this.setState({ error: resposta.error })
     } else {
       localStorage.setItem('email', email);
-      localStorage.setItem('senha', senha);
       localStorage.setItem('nome', resposta.nome)
       localStorage.setItem('artesao', resposta.artesao);
       localStorage.setItem('idpessoa', resposta.idpessoa)

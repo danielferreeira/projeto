@@ -18,7 +18,8 @@ export default class ProdutoEditModal extends Component {
     }
 
     fileSelectedHandler = event => {
-        console.log(event);
+        //const file = event.target.files[0];
+        
     }
 
     editarProduto = async () => {
