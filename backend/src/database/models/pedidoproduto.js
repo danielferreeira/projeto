@@ -25,7 +25,9 @@ module.exports = (sequelize, DataTypes) => {
     freezeTableName: true
   });
   PedidoProduto.associate = function(models) {
-
+    PedidoProduto.belongsTo(models.Pedido, {
+      foreignKey: 'idpedido'
+    });
   };
   return PedidoProduto;
 };

@@ -91,7 +91,6 @@ class ProdutoProvider extends Component {
   };
 
   getTotals = () => {
-    console.log(this.state)
     const subTotal = this.state.cart
       .map(item => item.total)
       .reduce((acc, curr) => {

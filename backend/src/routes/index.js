@@ -4,6 +4,7 @@ const routes = express.Router();
 
 const ProdutoController = require('../controllers/ProdutoController');
 const PessoaController = require('../controllers/PessoaController');
+const PedidoController = require('../controllers/PedidoController');
 
 routes.get('/produtos', ProdutoController.buscarProdutos);
 routes.put('/editarproduto/:idproduto', ProdutoController.editarProduto);
@@ -15,6 +16,8 @@ routes.get('/pessoas', PessoaController.buscarPessoas);
 routes.get('/pessoa/:idpessoa', PessoaController.buscarPessoaPeloId);
 routes.post('/criarpessoa', PessoaController.criarPessoa);
 routes.put('/atualizarpessoa', PessoaController.atualizarPessoa);
+
+routes.post('/finalizar', PedidoController.finalizarPedido);
 
 routes.post('/login', PessoaController.validarLoginPessoa);
 

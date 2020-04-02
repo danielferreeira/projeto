@@ -23,7 +23,7 @@ export default class ProdutoList extends Component {
             <div className="row">
               <ProdutoConsumer>
                 {value => {
-                  const produtosFiltrados = value && value.produtos && value.produtos.filter(produtoFiltrado => {
+                  const produtosFiltrados = value.produtos.filter(produtoFiltrado => {
                     if (String(produtoFiltrado.descricao).includes(this.state.filter) || String(produtoFiltrado.nome).includes(this.state.filter)) {
                       return produtoFiltrado;
                     } else {
