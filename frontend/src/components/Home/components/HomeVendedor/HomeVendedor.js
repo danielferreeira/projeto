@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./HomeVendedor.css";
 import ProdutoListar from './ProdutoListar';
 import NovoProduto from './NovoProduto';
 import Dados from './Dados';

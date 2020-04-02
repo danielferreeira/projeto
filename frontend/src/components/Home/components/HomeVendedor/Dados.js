@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./HomeVendedor.css";
 import { TextField, Button, Paper } from '@material-ui/core';
 import { atualizarDadosUsuario, carregarInformacoesUsuarioLogado } from "./requests";
 

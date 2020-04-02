@@ -9,7 +9,7 @@ export function salvarProduto(dados) {
             return resp.data;
         })
         .catch(err => {
-            return err.response.data
+            return err
         });
 
     return pessoa;
@@ -24,7 +24,7 @@ export function editarProduto(dados) {
             return resp.data;
         })
         .catch(err => {
-            return err.response.data
+            return err
         });
 
     return pessoa;
@@ -38,7 +38,7 @@ export function buscarProdutosVendedor() {
             return resp.data;
         })
         .catch(err => {
-            return err.response.data
+            return err
         });
 
     return pessoa;
@@ -52,7 +52,7 @@ export function carregarInformacoesUsuarioLogado() {
             return resp.data;
         })
         .catch(err => {
-            return err.response.data
+            return err
         });
 
     return pessoa;
@@ -66,7 +66,7 @@ export function atualizarDadosUsuario(dados) {
             return resp.data;
         })
         .catch(err => {
-            return err.response.data
+            return err
         });
 
     return pessoa;

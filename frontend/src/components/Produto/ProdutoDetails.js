@@ -27,20 +27,23 @@ export default class ProdutoDetails extends Component {
                                 </div>
                                 {/* prdoduct info */}
                                 <div className="col-10 mx-auto col-md-6 my-3 text-capitalize">
-                                    <h4 className="text-title text-uppercase text-muted mt-3 mb-2">
-                                        Feito por : <span className="text-uppercase">{vendedor.nome}</span>
+                                    <h4 className="text-title">
+                                        Feito por : <span>{vendedor.nome}</span>
                                     </h4>
                                     <h4 className="text-blue">
                                         <strong>
-                                            Preço : <span>R$</span>
-                                            {produto.valor}
+                                            Preço : <span>R$</span>{produto.valor}
                                         </strong>
                                     </h4>
+                                    <div>
+                                        <strong>
+                                            Frete : <span>R$</span>{produto.frete}
+                                        </strong>
+                                    </div>
                                     <p className="text-capitalize font-weight-bold mt-3 mb-0">
                                         Informações sobre o produto :
                                 </p>
                                     <p className="text-muted lead">{produto.descricao}</p>
-                                    {/* buttons */}
                                     <div>
                                         <ButtonContainer
                                             onClick={() => handleDetail(null)}

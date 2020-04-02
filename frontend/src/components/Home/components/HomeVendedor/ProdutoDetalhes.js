@@ -62,7 +62,6 @@ class ProdutoDetalhes extends Component {
                                         Informações sobre o produto :
                                     </p>
                                     <p className="text-muted lead">{produto.descricao}</p>
-                                    {/* buttons */}
                                     <div>
                                         <ButtonContainer
                                             onClick={() => handleDetail(null)}
@@ -74,16 +73,6 @@ class ProdutoDetalhes extends Component {
                                         >
                                             Editar produto
                                         </ButtonContainer>
-                                        {/* <ButtonContainer
-                                            cart
-                                            disabled={produto.inCart ? true : false}
-                                            onClick={() => {
-                                                //value.addToCart(id);
-                                                //value.openModal(id);
-                                            }}
-                                        >
-                                            {produto.inCart ? "No carrinho" : "Adicionar ao carrinho"}
-                                        </ButtonContainer> */}
                                     </div>
                                 </div>
                             </div>

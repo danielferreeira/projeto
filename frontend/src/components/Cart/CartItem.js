@@ -17,9 +17,14 @@ export default class CartItem extends Component {
         <div className="col-10 mx-auto col-lg-2 ">
           <span className="d-lg-none">Produto :</span> {item.nome}
         </div>
-        <div className="col-10 mx-auto col-lg-2 ">
+        <div className="col-10 mx-auto col-lg-1 ">
           <strong>
             <span className="d-lg-none">Preço :</span> R${item.valor}
+          </strong>
+        </div>
+        <div className="col-10 mx-auto col-lg-1 ">
+          <strong>
+            <span className="d-lg-none">Frete :</span> R${item.frete}
           </strong>
         </div>
         <div className="col-10 mx-auto col-lg-2 my-2 my-lg-0 ">

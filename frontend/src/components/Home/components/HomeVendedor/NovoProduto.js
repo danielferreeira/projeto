@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import "./HomeVendedor.css";
-import { TextField, Button, Paper } from '@material-ui/core';
+import { TextField, Button, Paper, Grid } from '@material-ui/core';
 import { salvarProduto } from './requests';
 import { withSnackbar } from 'notistack';
 import { mountDataImage } from "../../../../commom/functions";
@@ -11,6 +10,7 @@ class HomeVendedor extends Component {
     nome: '',
     descricao: '',
     valor: 0,
+    frete: 0,
     imagem: '',
     idpessoa: localStorage.getItem('idpessoa')
   }
@@ -78,23 +78,36 @@ class HomeVendedor extends Component {
             value={this.state.descricao}
             onChange={this.handleChange}
           />
-
-          <div className="flex">
-            <TextField
-              className="flex mb-3 mr-1"
-              variant="outlined"
-              id="valor"
-              label="Preço"
-              type="number"
-              name="valor"
-              fullWidth
-              style={{ width: "50%" }}
-              value={this.state.valor}
-              onChange={this.handleChange}
-            />
-          </div>
+          <Grid container>
+            <Grid item xs={6}>
+              <TextField
+                className="flex mb-12 mr-1"
+                variant="outlined"
+                id="valor"
+                label="Preço"
+                type="number"
+                name="valor"
+                fullWidth
+                value={this.state.valor}
+                onChange={this.handleChange}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                variant="outlined"
+                id="frete"
+                label="Frete"
+                type="number"
+                name="frete"
+                fullWidth
+                value={this.state.frete}
+                onChange={this.handleChange}
+              />
+            </Grid>
+          </Grid>
 
           <div className="App">
+            <img alt="" src={this.state.imagem || "https://www.lucastavares.net/wp/wp-content/themes/ctheme/assets/img/img-default.jpg"} width='100px' height="100px" />
             <input type="file" className="flex mb-3 mr-1" onChange={this.fileSelectedHandler} />
           </div>
 

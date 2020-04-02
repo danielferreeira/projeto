@@ -6,7 +6,7 @@ export function fazerLogin(email, senha) {
             return resp.data;
         })
         .catch(err => {
-            return err.response.data
+            return err
         });
 
     return pessoa;

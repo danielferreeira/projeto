@@ -15,6 +15,7 @@ export default class Produto extends Component {
 
   render() {
     const { produto, vendedor, other } = this.props;
+
     const { produtoOpen } = this.state;
     return (
       <ProdutoWrapper className="col-9 mx-auto col-md-6 col-lg-3 my-3">

@@ -6,7 +6,7 @@ export function criarConta(dados) {
             return resp.data;
         })
         .catch(err => {
-            return err.response.data
+            return err
         });
 
     return pessoa;

@@ -6,7 +6,7 @@ export function buscarProdutos() {
             return resp.data;
         })
         .catch(err => {
-            return err.response.data
+            return err
         });
 
     return produtos;

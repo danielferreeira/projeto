@@ -2,14 +2,18 @@ import api from '../../../../../config/axios';
 
 export function salvarProduto(dados) {
 
-    const produto = { ...dados, valor: Number(dados.valor) };
+    const produto = {
+        ...dados,
+        valor: Number(dados.valor),
+        frete: Number(dados.frete)
+    };
 
     const pessoa = api.post('/criarproduto', produto)
         .then(resp => {
             return resp.data;
         })
         .catch(err => {
-            return err.response.data
+            return err
         });
 
     return pessoa;
@@ -24,7 +28,7 @@ export function editarProduto(dados) {
             return resp.data;
         })
         .catch(err => {
-            return err.response.data
+            return err
         });
 
     return pessoa;
@@ -38,7 +42,7 @@ export function buscarProdutosVendedor() {
             return resp.data;
         })
         .catch(err => {
-            return err.response.data
+            return err
         });
 
     return pessoa;
@@ -52,7 +56,7 @@ export function carregarInformacoesUsuarioLogado() {
             return resp.data;
         })
         .catch(err => {
-            return err.response.data
+            return err
         });
 
     return pessoa;
@@ -66,7 +70,7 @@ export function atualizarDadosUsuario(dados) {
             return resp.data;
         })
         .catch(err => {
-            return err.response.data
+            return err
         });
 
     return pessoa;
@@ -79,6 +83,6 @@ export function buscarProduto(idproduto) {
             return resp.data;
         })
         .catch(err => {
-            return err.response.data
+            return err
         });
 }

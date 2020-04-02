@@ -1,15 +1,14 @@
 import React, { Component } from "react";
-import { detailProduto } from "./data";
 import { buscarProdutos } from "./components/Produto/request";
 const ProdutoContext = React.createContext();
 
 class ProdutoProvider extends Component {
   state = {
     produtos: [],
-    detailProduto: detailProduto,
+    detailProduto: {},
     cart: [],
     modalOpen: false,
-    modalProduto: detailProduto,
+    modalProduto: {},
     cartSubTotal: 0,
     cartTax: 0,
     cartTotal: 0
@@ -40,15 +39,13 @@ class ProdutoProvider extends Component {
     const produto = tempProdutos[index];
     produto.inCart = true;
     produto.count = 1;
-    const valor = produto.valor;
-    produto.total = valor;
+    const valorTotal = Number(produto.valor) + Number(produto.frete);
+    produto.total = valorTotal;
 
-    this.setState(() => {
-      return {
-        produtos: [...tempProdutos],
-        cart: [...this.state.cart, produto],
-        detailProduto: { ...produto }
-      };
+    this.setState({
+      produtos: [...tempProdutos],
+      cart: [...this.state.cart, produto],
+      detailProduto: { ...produto }
     }, this.addTotals);
   };
 
@@ -73,12 +70,8 @@ class ProdutoProvider extends Component {
     const index = tempCart.indexOf(selectedProduto);
     const produto = tempCart[index];
     produto.count = produto.count + 1;
-    produto.total = produto.count * produto.valor;
-    this.setState(() => {
-      return {
-        cart: [...tempCart]
-      };
-    }, this.addTotals);
+    produto.total = (Number(produto.count) * Number(produto.valor)) + Number(produto.frete);
+    this.setState({ cart: [...tempCart] }, this.addTotals);
   };
 
   decrement = idproduto => {
@@ -92,14 +85,13 @@ class ProdutoProvider extends Component {
     if (produto.count === 0) {
       this.removeItem(idproduto);
     } else {
-      produto.total = produto.count * produto.valor;
-      this.setState(() => {
-        return { cart: [...tempCart] };
-      }, this.addTotals);
+      produto.total = (Number(produto.count) * Number(produto.valor)) + Number(produto.frete);
+      this.setState({ cart: [...tempCart] }, this.addTotals);
     }
   };
 
   getTotals = () => {
+    console.log(this.state)
     const subTotal = this.state.cart
       .map(item => item.total)
       .reduce((acc, curr) => {
@@ -109,7 +101,6 @@ class ProdutoProvider extends Component {
 
     return {
       subTotal: parseFloat(subTotal).toFixed(2),
-      // tax: (parseFloat(subTotal) * 0.2).toFixed(2),
       tax: 0,
       total: parseFloat(subTotal).toFixed(2)
     };

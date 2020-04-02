@@ -11,8 +11,11 @@ export default class CartColumns extends Component {
           <div className="col-10 mx-auto col-lg-2">
             <p className="text-uppercase">Nome</p>
           </div>
-          <div className="col-10 mx-auto col-lg-2">
+          <div className="col-10 mx-auto col-lg-1">
             <p className="text-uppercase">Preço</p>
+          </div>
+          <div className="col-10 mx-auto col-lg-1">
+            <p className="text-uppercase">Frete</p>
           </div>
           <div className="col-10 mx-auto col-lg-2">
             <p className="text-uppercase">Quantidade</p>
