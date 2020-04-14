@@ -25,6 +25,7 @@ module.exports = {
       baixa: {
         type: Sequelize.DATE
       },
+      valorTotal: Sequelize.DECIMAL(18, 2),
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

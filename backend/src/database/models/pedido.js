@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     descricao: DataTypes.STRING,
+    valorTotal: DataTypes.DECIMAL(18, 2),
     lancamento: DataTypes.DATE,
     baixa: DataTypes.DATE
   }, {
