@@ -71,3 +71,15 @@ export function atualizarDadosUsuario(dados) {
 
     return pessoa;
 }
+
+export function relatorioUsuario() {
+    const relatorio = api.get('/relatorios/usuario')
+        .then(resp => {
+            return resp.data;
+        })
+        .catch(err => {
+            return err
+        });
+
+    return relatorio;
+}

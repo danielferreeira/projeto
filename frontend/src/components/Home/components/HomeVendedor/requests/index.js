@@ -86,3 +86,14 @@ export function buscarProduto(idproduto) {
             return err
         });
 }
+export function relatorioVendedor() {
+    const relatorio = api.get('/relatorios/artesao')
+        .then(resp => {
+            return resp.data;
+        })
+        .catch(err => {
+            return err
+        });
+
+    return relatorio;
+}

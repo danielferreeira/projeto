@@ -1,38 +1,66 @@
-import React, { Component } from "react";
-import "./HomeUsuario.css";
-import { Button, Paper } from '@material-ui/core';
+import React, { useState, useEffect } from "react";
 
-export default class HomeUsuario extends Component {
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 
-  state = {
-    relatorio: 'Relatório de compras',
+import { makeStyles } from "@material-ui/core";
+
+import { relatorioUsuario } from "./requests";
+
+const useStyles = makeStyles({
+  table: {
+    minWidth: 650,
+  },
+  container: {
+    margin: 20,
+    padding: 5
+  }
+});
+
+export default function HomeUsuario() {
+  const classes = useStyles();
+
+  useEffect(() => {
+    buscarRelatorio();
+  }, []);
+
+  const [rows, setRows] = useState([]);
+  const buscarRelatorio = async () => {
+    const rows = await relatorioUsuario();
+
+    setRows(rows);
   }
 
-  handleChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
-  }
-
-  fileSelectedHandler = event => {
-    console.log(event);
-  }
-
-  render() {
-    return (
-      <React.Fragment>
-        <Paper
-          className="paperhomevendedor"
-          elevation={2}
-        >
-          <Button
-            variant="contained"
-            className="buttonHomeUsuario mt-8 justify-center"
-            color="inherit"
-            size="large"
-          >
-            Relatório de compras
-        </Button>
-        </Paper>
-      </React.Fragment>
-    );
-  }
+  return (
+    <React.Fragment>
+      <Paper className={classes.container}>
+        <Table className={classes.table} size="small" aria-label="a dense table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="center">Cliente</TableCell>
+              <TableCell align="center">Data</TableCell>
+              <TableCell align="center">Produto</TableCell>
+              <TableCell align="center">Quantidade</TableCell>
+              <TableCell align="center">Total</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row) => (
+              <TableRow key={row.name}>
+                <TableCell component="th" scope="row">{row.nomecliente}</TableCell>
+                <TableCell align="left">{new Date(row.datapedido).toLocaleDateString()}</TableCell>
+                <TableCell align="left">{row.nomeproduto}</TableCell>
+                <TableCell align="left">{row.quantidadeproduto}</TableCell>
+                <TableCell align="left">{row.valortotalpedido}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </Paper>
+    </React.Fragment>
+  );
 }
