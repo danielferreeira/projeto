@@ -7,7 +7,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, Typography, Divider } from "@material-ui/core";
 
 import { relatorioVendedor } from "./requests";
 
@@ -18,7 +18,11 @@ const useStyles = makeStyles({
   container: {
     margin: 20,
     padding: 5
-  }
+  },
+  title: {
+    flex: '1 1 100%',
+    textAlign: 'center'
+  },
 });
 
 export default function HomeVendedor() {
@@ -36,31 +40,33 @@ export default function HomeVendedor() {
   }
 
   return (
-    <React.Fragment>
-      <Paper className={classes.container}>
-        <Table className={classes.table} size="small" aria-label="a dense table">
-          <TableHead>
-            <TableRow>
-              <TableCell align="center">Produto</TableCell>
-              <TableCell align="center">Data</TableCell>
-              <TableCell align="center">Quantidade</TableCell>
-              <TableCell align="center">Frete</TableCell>
-              <TableCell align="center">Total</TableCell>
+    <Paper className={classes.container}>
+      <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
+        Relatório de venda
+      </Typography>
+      <Divider />
+      <Table className={classes.table} size="small" aria-label="a dense table">
+        <TableHead>
+          <TableRow>
+            <TableCell align="center">Produto</TableCell>
+            <TableCell align="center">Data</TableCell>
+            <TableCell align="center">Quantidade</TableCell>
+            <TableCell align="center">Frete</TableCell>
+            <TableCell align="center">Total</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row) => (
+            <TableRow key={row.name}>
+              <TableCell align="left">{row.nome}</TableCell>
+              <TableCell align="left">{new Date(row.datapedido).toLocaleDateString()}</TableCell>
+              <TableCell align="left">{row.totalquantidade}</TableCell>
+              <TableCell align="left">{row.frete}</TableCell>
+              <TableCell align="left">{row.valortotalpedido}</TableCell>
             </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows.map((row) => (
-              <TableRow key={row.name}>
-                <TableCell align="left">{row.nome}</TableCell>
-                <TableCell align="left">{new Date(row.datapedido).toLocaleDateString()}</TableCell>
-                <TableCell align="left">{row.totalquantidade}</TableCell>
-                <TableCell align="left">{row.frete}</TableCell>
-                <TableCell align="left">{row.valortotalpedido}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </Paper>
-    </React.Fragment>
+          ))}
+        </TableBody>
+      </Table>
+    </Paper>
   );
 }
