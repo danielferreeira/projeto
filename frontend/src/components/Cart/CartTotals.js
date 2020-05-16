@@ -1,13 +1,17 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
-import { Button } from "@material-ui/core";
+import { Button, Dialog, DialogTitle, List, ListItem, ListItemText } from "@material-ui/core";
 import { finalizarPedido } from "./requests";
 import PayPalButton from './PayPalButton';
 
 class CartTotals extends Component {
 
-  handleFinalizarPedido(value, clearCart) {
-    finalizarPedido(value)
+  state = {
+    modalOpen: false
+  }
+
+  handleFinalizarPedido(pagarFrete, value, clearCart) {
+    finalizarPedido(pagarFrete, value)
       .then(boleto => {
         var win = window.open('');
         win.document.write(boleto);
@@ -18,6 +22,10 @@ class CartTotals extends Component {
 
         this.props.history.push('/');
       })
+  }
+
+  handleCloseModal = () => {
+    this.setState({ modalOpen: !this.state.modalOpen })
   }
 
 
@@ -61,13 +69,25 @@ class CartTotals extends Component {
                   <span className="text-title">Total :</span>{" "}
                   <strong>R$ {cartTotal} </strong>
                 </h5>
-                <Button color="primary" variant="outlined" onClick={() => this.handleFinalizarPedido(this.props.value, clearCart)}>Gerar boleto</Button>
+                <Button color="primary" variant="outlined" onClick={() => this.handleCloseModal()}>Gerar boleto</Button>
                 <PayPalButton total={cartTotal} />
               </div>
             </div>
           </div>
         )}
+        <Dialog onClose={this.handleCloseModal} aria-labelledby="simple-dialog-title" open={this.state.modalOpen}>
+          <DialogTitle id="simple-dialog-title">Você vai retirar o produto com o vendedor?</DialogTitle>
+          <List>
+            <ListItem button onClick={() => this.handleFinalizarPedido(false, this.props.value, clearCart)} key={1}>
+              <ListItemText primary="Sim, pagar boleto sem o frente" />
+            </ListItem>
+            <ListItem button onClick={() => this.handleFinalizarPedido(true, this.props.value, clearCart)} key={2}>
+              <ListItemText primary="Não, pagar boleto com o frente" />
+            </ListItem>
+          </List>
+        </Dialog>
       </React.Fragment>
+
     );
   }
 }

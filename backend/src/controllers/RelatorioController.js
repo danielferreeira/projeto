@@ -8,7 +8,9 @@ const { QueryTypes } = require('sequelize');
 class RelatorioController {
     async relatorioUsuario(req, res) {
 
-        const query = 'select cliente.nome as nomecliente, produto.idproduto, produto.nome as nomeproduto, pp.quantidade as quantidadeproduto, (pp.quantidade * produto.valor)::numeric as valortotalproduto,	produto.frete,	pedido."createdAt" as datapedido, pedido."valorTotal" as valortotalpedido, (select sum(p.quantidade) from public."PedidoProduto" as p where	p.idpedidoproduto = pp.idpedidoproduto) as totalquantidade from	public."Pedido" as pedido join public."Pessoa" as cliente on cliente.Idpessoa = pedido.Idpessoa join public."PedidoProduto" as pp on pp.idpedido = pedido.idpedido join public."Produto" as produto on produto.idproduto = pp.idproduto order by pedido."createdAt" asc, produto.nome asc';
+        const { id } = req.params;
+
+        const query = `select cliente.nome as nomecliente, produto.idproduto, produto.nome as nomeproduto, pp.quantidade as quantidadeproduto, (pp.quantidade * produto.valor)::numeric as valortotalproduto,	produto.frete,	pedido."createdAt" as datapedido, pedido."valorTotal" as valortotalpedido, (select sum(p.quantidade) from public."PedidoProduto" as p where	p.idpedidoproduto = pp.idpedidoproduto) as totalquantidade from	public."Pedido" as pedido join public."Pessoa" as cliente on cliente.Idpessoa = pedido.Idpessoa join public."PedidoProduto" as pp on pp.idpedido = pedido.idpedido join public."Produto" as produto on produto.idproduto = pp.idproduto where pedido.idpessoa = ${id} order by pedido."createdAt" asc, produto.nome asc`;
 
         const result = await sequelize.query(query, { type: QueryTypes.SELECT });
 

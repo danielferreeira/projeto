@@ -18,7 +18,7 @@ routes.get('/pessoa/:idpessoa', PessoaController.buscarPessoaPeloId);
 routes.post('/criarpessoa', PessoaController.criarPessoa);
 routes.put('/atualizarpessoa', PessoaController.atualizarPessoa);
 
-routes.get('/relatorios/usuario', RelatorioController.relatorioUsuario);
+routes.get('/relatorios/usuario/:id', RelatorioController.relatorioUsuario);
 routes.get('/relatorios/artesao', RelatorioController.relatorioArtesao);
 
 routes.post('/finalizar', PedidoController.finalizarPedido);

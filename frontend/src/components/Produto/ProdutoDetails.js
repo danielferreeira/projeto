@@ -27,9 +27,12 @@ export default class ProdutoDetails extends Component {
                                 </div>
                                 {/* prdoduct info */}
                                 <div className="col-10 mx-auto col-md-6 my-3 text-capitalize">
-                                    <h4 className="text-title">
+                                    <h5>
                                         Feito por : <span>{vendedor.nome}</span>
-                                    </h4>
+                                        <br/>
+                                        Contato: <span>{vendedor.contato}</span>
+                                    </h5>
+
                                     <h4 className="text-blue">
                                         <strong>
                                             Preço : <span>R$</span>{produto.valor}

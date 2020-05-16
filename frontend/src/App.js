@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import ProdutoList from "./components/Produto/ProdutoList";
 import Home from "./components/Home";
@@ -11,18 +11,29 @@ import Default from "./components/Default";
 import Cart from "./components/Cart";
 import Modal from "./components/Modal";
 
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  const idpessoa = localStorage.getItem('idpessoa');
+
+  return (
+    <Route {...rest} render={props => (
+      (idpessoa !== null) ?
+        <Component {...props} />
+        : <Redirect to="/login" />
+    )} />
+  );
+};
+
 class App extends Component {
   render() {
     return (
       <React.Fragment>
         <Navbar />
         <Switch>
-          <Route exact path="/" component={ProdutoList} />
-          <Route exact path="/home" component={Home} />
+          <PrivateRoute exact path="/" component={ProdutoList} />
+          <PrivateRoute exact path="/home" component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
-          <Route exact path="/home" component={ProdutoList} />
-          <Route exact path="/cart" component={Cart} />
+          <PrivateRoute exact path="/cart" component={Cart} />
           <Route component={Default} />
         </Switch>
         <Modal />

@@ -47,7 +47,7 @@ class HomeVendedor extends Component {
   }
 
   limparFormulario = () => {
-    this.setState({ nome: '', descricao: '', valor: 0, imagem: '' })
+    this.setState({ nome: '', descricao: '', valor: 0, imagem: '', frete: '' })
   }
 
   render() {

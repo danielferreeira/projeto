@@ -26,21 +26,18 @@ export default class Login extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  validarLogin = async () => {
+  validarLogin = () => {
     const { email, senha } = this.state;
 
-    const resposta = await fazerLogin(email, senha);
-
-    if (resposta.error) {
-      this.setState({ error: resposta.error })
-    } else {
+    fazerLogin(email, senha, resposta => {
       localStorage.setItem('email', email);
       localStorage.setItem('nome', resposta.nome)
       localStorage.setItem('artesao', resposta.artesao);
       localStorage.setItem('idpessoa', resposta.idpessoa)
-
       this.props.history.push('/home')
-    }
+    }, err => {
+      this.setState({ error: err.response.data.error })
+    });
 
   }
 

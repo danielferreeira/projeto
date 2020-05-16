@@ -1,12 +1,12 @@
 import api from '../../../config/axios';
 
-export function fazerLogin(email, senha) {
+export function fazerLogin(email, senha, onSuccess, onError) {
     const pessoa = api.post('/login', { email, senha })
         .then(resp => {
-            return resp.data;
+            onSuccess && onSuccess(resp.data);
         })
         .catch(err => {
-            return err
+            onError && onError(err);
         });
 
     return pessoa;

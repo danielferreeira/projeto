@@ -17,17 +17,18 @@ class PedidoController {
                 });
             });
             var boleto = new Boleto({
-                'banco': "santander", // nome do banco dentro da pasta 'banks'
+                'banco': "santander",
                 'data_emissao': new Date(),
-                'data_vencimento': new Date(new Date().getTime() + 5 * 24 * 3600 * 1000), // 5 dias futuramente
-                'valor': pedido.valorTotal * 100, // R$ 15,00 (valor em centavos)
+                'data_vencimento': new Date(new Date().getTime() + 5 * 24 * 3600 * 1000),
+                'valor': (((Number(pedido.valorTotal) * 100) + (Number(pedido.valorFrete) * 100))),
                 'nosso_numero': "1234567",
                 'numero_documento': "123123",
                 'cedente': "Pagar.me Pagamentos S/A",
-                'cedente_cnpj': "18727053000174", // sem pontos e traços
+                'cedente_cnpj': "18727053000174",
                 'agencia': "3978",
-                'codigo_cedente': "6404154", // PSK (código da carteira)
-                'carteira': "102"
+                'codigo_cedente': "6404154",
+                'carteira': "102",
+                'instrucoes': "Instruções de pagamento de boleto"
             });
 
             boleto.renderHTML(function (html) {

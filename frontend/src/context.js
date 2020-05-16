@@ -39,7 +39,7 @@ class ProdutoProvider extends Component {
     const produto = tempProdutos[index];
     produto.inCart = true;
     produto.count = 1;
-    const valorTotal = Number(produto.valor) + Number(produto.frete);
+    const valorTotal = Number(produto.valor);
     produto.total = valorTotal;
 
     this.setState({
@@ -85,7 +85,7 @@ class ProdutoProvider extends Component {
     if (produto.count === 0) {
       this.removeItem(idproduto);
     } else {
-      produto.total = (Number(produto.count) * Number(produto.valor)) + Number(produto.frete);
+      produto.total = (Number(produto.count) * Number(produto.valor));
       this.setState({ cart: [...tempCart] }, this.addTotals);
     }
   };

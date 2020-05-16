@@ -73,7 +73,10 @@ export function atualizarDadosUsuario(dados) {
 }
 
 export function relatorioUsuario() {
-    const relatorio = api.get('/relatorios/usuario')
+
+    const idpessoa = localStorage.getItem('idpessoa');
+
+    const relatorio = api.get(`/relatorios/usuario/${idpessoa}`)
         .then(resp => {
             return resp.data;
         })

@@ -1,12 +1,12 @@
 import api from '../../../config/axios';
 
-export function finalizarPedido(values) {
-
+export function finalizarPedido(pagarFrete, values) {
     const data = {
         pedido: {
             idpessoa: localStorage.getItem('idpessoa'),
             descricao: `Pedido finalizado`,
-            valorTotal: values.cartTotal
+            valorTotal: values.cartTotal,
+            valorFrete: pagarFrete ? values.cart.map((produto) => produto.frete).reduce((acc, curr) => acc + curr) : 0
         },
         pedidoprodutos: [
             ...values.cart.map(produto => {
@@ -15,7 +15,7 @@ export function finalizarPedido(values) {
                     quantidade: produto.count
                 }
             })
-        ]
+        ],
     };
 
     return api.post('/finalizar', data)
