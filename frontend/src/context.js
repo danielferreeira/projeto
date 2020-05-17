@@ -70,7 +70,7 @@ class ProdutoProvider extends Component {
     const index = tempCart.indexOf(selectedProduto);
     const produto = tempCart[index];
     produto.count = produto.count + 1;
-    produto.total = (Number(produto.count) * Number(produto.valor)) + Number(produto.frete);
+    produto.total = (Number(produto.count) * Number(produto.valor));
     this.setState({ cart: [...tempCart] }, this.addTotals);
   };
 
