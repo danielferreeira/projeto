@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import "./HomeUsuario.css";
 import { TextField, Button, Paper } from '@material-ui/core';
 import { carregarInformacoesUsuarioLogado, atualizarDadosUsuario } from "./requests";
+import { withSnackbar } from "notistack";
 
-export default class HomeVendedor extends Component {
+class HomeVendedor extends Component {
 
   state = {
     nome: '',
@@ -26,6 +27,7 @@ export default class HomeVendedor extends Component {
 
   atualizar = () => {
     atualizarDadosUsuario(this.state);
+    this.props.enqueueSnackbar('Perfil atualizado com sucesso.', { variant: 'success' })
   }
 
   render() {
@@ -87,3 +89,5 @@ export default class HomeVendedor extends Component {
     );
   }
 }
+
+export default withSnackbar(HomeVendedor);

@@ -49,6 +49,7 @@ export default function HomeVendedor() {
         <TableHead>
           <TableRow>
             <TableCell align="center">Produto</TableCell>
+            <TableCell align="center">Cliente</TableCell>
             <TableCell align="center">Data</TableCell>
             <TableCell align="center">Quantidade</TableCell>
             <TableCell align="center">Frete</TableCell>
@@ -59,6 +60,7 @@ export default function HomeVendedor() {
           {rows.map((row) => (
             <TableRow key={row.name}>
               <TableCell align="left">{row.nome}</TableCell>
+              <TableCell align="left">{row.nomecliente}</TableCell>
               <TableCell align="left">{new Date(row.datapedido).toLocaleDateString()}</TableCell>
               <TableCell align="left">{row.totalquantidade}</TableCell>
               <TableCell align="left">{row.frete}</TableCell>

@@ -10,7 +10,7 @@ class RelatorioController {
 
         const { id } = req.params;
 
-        const query = `select cliente.nome as nomecliente, produto.idproduto, produto.nome as nomeproduto, pp.quantidade as quantidadeproduto, (pp.quantidade * produto.valor)::numeric as valortotalproduto,	produto.frete,	pedido."createdAt" as datapedido, pedido."valorTotal" as valortotalpedido, (select sum(p.quantidade) from public."PedidoProduto" as p where	p.idpedidoproduto = pp.idpedidoproduto) as totalquantidade from	public."Pedido" as pedido join public."Pessoa" as cliente on cliente.Idpessoa = pedido.Idpessoa join public."PedidoProduto" as pp on pp.idpedido = pedido.idpedido join public."Produto" as produto on produto.idproduto = pp.idproduto where pedido.idpessoa = ${id} order by pedido."createdAt" asc, produto.nome asc`;
+        const query = `select cliente.nome as nomecliente, produto.idproduto, produto.nome as nomeproduto, pp.quantidade as quantidadeproduto, (pp.quantidade * produto.valor)::numeric as valortotalproduto,	produto.frete,	pedido."createdAt" as datapedido, pedido."valorTotal" as valortotalpedido, (select p2.nome from "Pessoa" p2 where produto.idpessoa = p2.idpessoa) as nomeartesao, (select sum(p.quantidade) from public."PedidoProduto" as p where	p.idpedidoproduto = pp.idpedidoproduto) as totalquantidade from	public."Pedido" as pedido join public."Pessoa" as cliente on cliente.Idpessoa = pedido.Idpessoa join public."PedidoProduto" as pp on pp.idpedido = pedido.idpedido join public."Produto" as produto on produto.idproduto = pp.idproduto where pedido.idpessoa = ${id} order by pedido."createdAt" asc, produto.nome asc`;
 
         const result = await sequelize.query(query, { type: QueryTypes.SELECT });
 
@@ -22,7 +22,7 @@ class RelatorioController {
     }
 
     async relatorioArtesao(req, res) {
-        const query = 'select(select artesao.nome from public."Pessoa" as artesao where artesao.artesao is true and produto.idpessoa = artesao.Idpessoa ) as nomeartesao, produto.idproduto,	produto.nome, pp.quantidade, (pp.quantidade * produto.valor)::numeric as valortotalproduto, produto.frete, pedido."createdAt" as datapedido, pedido."valorTotal" as valortotalpedido, (select sum(p.quantidade) from public."PedidoProduto" as p	where p.idpedidoproduto = pp.idpedidoproduto) as totalquantidade from public."Pedido" as pedido join public."Pessoa" as cliente on cliente.Idpessoa = pedido.Idpessoa join public."PedidoProduto" as pp on pp.idpedido = pedido.idpedido join public."Produto" as produto on produto.idproduto = pp.idproduto';
+        const query = 'select(select artesao.nome from public."Pessoa" as artesao where artesao.artesao is true and produto.idpessoa = artesao.Idpessoa ) as nomeartesao, produto.idproduto, produto.nome, cliente.nome as nomecliente, pp.quantidade, (pp.quantidade * produto.valor)::numeric as valortotalproduto, produto.frete, pedido."createdAt" as datapedido, pedido."valorTotal" as valortotalpedido, (select sum(p.quantidade) from public."PedidoProduto" as p	where p.idpedidoproduto = pp.idpedidoproduto) as totalquantidade from public."Pedido" as pedido join public."Pessoa" as cliente on cliente.Idpessoa = pedido.Idpessoa join public."PedidoProduto" as pp on pp.idpedido = pedido.idpedido join public."Produto" as produto on produto.idproduto = pp.idproduto';
 
         const result = await sequelize.query(query, { type: QueryTypes.SELECT });
 

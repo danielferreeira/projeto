@@ -49,6 +49,7 @@ export default function HomeUsuario() {
         <TableHead>
           <TableRow>
             <TableCell align="center">Cliente</TableCell>
+            <TableCell align="center">Artesão</TableCell>
             <TableCell align="center">Data</TableCell>
             <TableCell align="center">Produto</TableCell>
             <TableCell align="center">Quantidade</TableCell>
@@ -59,6 +60,7 @@ export default function HomeUsuario() {
           {rows.map((row) => (
             <TableRow key={row.name}>
               <TableCell component="th" scope="row">{row.nomecliente}</TableCell>
+              <TableCell component="th" scope="row">{row.nomeartesao}</TableCell>
               <TableCell align="left">{new Date(row.datapedido).toLocaleDateString()}</TableCell>
               <TableCell align="left">{row.nomeproduto}</TableCell>
               <TableCell align="left">{row.quantidadeproduto}</TableCell>

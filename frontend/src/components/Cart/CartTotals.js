@@ -39,6 +39,7 @@ class CartTotals extends Component {
     } = this.props.value;
     
     const emptyCart = cart.length === 0 ? true : false;
+    const valorFrete = cart && cart.map((produto) => produto.frete).reduce((acc, curr) => acc + curr)
 
     return (
       <React.Fragment>
@@ -67,7 +68,7 @@ class CartTotals extends Component {
                 </h5>
                 <h5>
                   <span className="text-title">Total :</span>{" "}
-                  <strong>R$ {cartTotal} </strong>
+                  <strong>{Number(Number(cartTotal) + Number(valorFrete)).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong>
                 </h5>
                 <Button color="primary" variant="outlined" onClick={() => this.handleCloseModal()}>Gerar boleto</Button>
                 <PayPalButton total={cartTotal} />
