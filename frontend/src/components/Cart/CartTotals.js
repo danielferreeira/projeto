@@ -71,7 +71,6 @@ class CartTotals extends Component {
                   <strong>{Number(Number(cartTotal) + Number(valorFrete)).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</strong>
                 </h5>
                 <Button color="primary" variant="outlined" onClick={() => this.handleCloseModal()}>Gerar boleto</Button>
-                <PayPalButton total={cartTotal} />
               </div>
             </div>
           </div>
